@@ -255,7 +255,7 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
                 }
             } else {
                 HTTranslatingView.dismiss()
-                self.inputV.inputTextV.resignFirstResponder()
+//                self.inputV.inputTextV.resignFirstResponder()
                 ZKProgressHUD.showMessage("Error, please try it again", autoDismissDelay: 1.7)
             }
             

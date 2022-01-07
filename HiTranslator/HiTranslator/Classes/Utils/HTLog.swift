@@ -66,7 +66,7 @@ class HTLog: NSObject {
     }
     
     class func textpage_o() {
-        HTLog.log("[LOG] log: 首页点击 ocr 按钮")
+        HTLog.log("[LOG] log: textpage_o 首页点击 ocr 按钮")
         Analytics.logEvent("textpage_o", parameters: nil)
     }
     
