@@ -17,6 +17,8 @@ target 'HiTranslator' do
   pod 'SnapKit'
   pod 'ZKProgressHUD'
   pod 'Alamofire'
+  pod 'Firebase/RemoteConfig'
+  pod 'Google-Mobile-Ads-SDK'
   
   # Pods for HiTranslator
   

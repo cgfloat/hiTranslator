@@ -13,6 +13,7 @@ import MLKit
 class HTRootViewController: UIViewController, HTNetworkProtocal {
     
     var isTopTrans: Bool = true
+    var isFirstShow = true
     
     lazy var topV: HTTopView = {
         let v = HTTopView.loadFromXib()
@@ -91,13 +92,22 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
         button.addTarget(self, action: #selector(ocrAction), for: .touchUpInside)
         return button
     }()
-
+    
+    lazy var nativeV: HTNativeADView = {
+        let view = HTNativeADView.loadFromXib()
+        view.isHidden = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.ColorFromRGB(0xf5f7fc)
         
+        HTAdverUtil.shared.loadInterstitialAd(type: .transInter)
+        
         view.addSubview(topV)
+        view.addSubview(nativeV)
         view.addSubview(resultV)
         resultV.snp.makeConstraints { make in
             make.top.equalTo(topV.snp.bottom)
@@ -113,7 +123,7 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
             make.right.equalToSuperview().offset(-16)
             make.bottom.equalTo(photoBtn.snp.top)
         }
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: UIApplication.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: UIApplication.keyboardWillHideNotification, object: nil)
         
@@ -123,6 +133,32 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
             self.resultV.bottomLab.text = UserDefaults.standard.value(forKey: LaguageString.textSourceTitle) as? String
             self.inputV.laguageLab.text = self.isTopTrans ? UserDefaults.standard.value(forKey: LaguageString.textTargetTitle) as? String : UserDefaults.standard.value(forKey: LaguageString.textSourceTitle) as? String
         }
+        
+        /// 关闭插屏广告
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.Remote.config, object: nil, queue: nil) { noti in
+            if let vc = self.presentedViewController {
+                if let subVC = vc.presentedViewController {
+                    subVC.dismiss(animated: false, completion: nil)
+                }
+                vc.dismiss(animated: false, completion: nil)
+            }
+            if HTAdverUtil.shared.type == .backRoot || HTAdverUtil.shared.type == .transInter {
+                HTAdverUtil.shared.removeCachefirst(type: HTAdverUtil.shared.type!)
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AD.transNative, object: nil, queue: nil) { noti in
+            self.isFirstShow = false
+            /// 翻译页面原生广告
+            HTAdverUtil.shared.showNativeAd(type: .transNative, complete: { [weak self] result, ad in
+                if result == true, self?.nativeV.isHidden == true { /// cache 有则加载
+                    self?.nativeV.isHidden = false
+                    self?.nativeV.nativeAd = ad
+                    HTAdverUtil.shared.addShowCount()
+                    self?.resetConstraints()
+                }
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +166,37 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
         navigationController?.navigationBar.isHidden = true
         HTLog.textpage()
         HTTransUtil.shared.setLanguages(type: .text)
+        
+        if isFirstShow == false {
+            /// 翻译页面原生广告
+            HTAdverUtil.shared.showNativeAd(type: .transNative, complete: { [weak self] result, ad in
+                if result == true, self?.nativeV.isHidden == true { /// cache 有则加载
+                    self?.nativeV.isHidden = false
+                    self?.nativeV.nativeAd = ad
+                    HTAdverUtil.shared.addShowCount()
+                    self?.resetConstraints()
+                }
+            })
+        }
+    }
+    
+    func resetConstraints() {
+        resultV.snp.remakeConstraints { make in
+            make.top.equalTo(topV.snp.bottom).offset(68)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+            make.bottom.equalTo(photoBtn.snp.top).offset(-15)
+        }
+    }
+    
+    /// 展示广告
+    func showAD() {
+        
+        HTAdverUtil.shared.showInterstitialAd(type: .transInter, complete: { result, ad in
+            if result, let ad = ad {
+                ad.present(fromRootViewController: self)
+            }
+        })
     }
     
     /// 键盘监听
@@ -193,17 +260,17 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
             return
         }
         
-            HTLog.all_use(type: "t")
+        HTLog.all_use(type: "t")
         
         guard self.isConected() == true else {
             ZKProgressHUD.showMessage("Please turn on your network or wifi", autoDismissDelay: 1.6)
             return
         }
         
-            HTLog.textpage_t2()
+        HTLog.textpage_t2()
         HTLog.all_0()
         
-            HTTranslatingView.show()
+        HTTranslatingView.show()
         if isTopTrans {
             let temp = HTTransUtil.shared.sourceLanguage
             HTTransUtil.shared.sourceLanguage = HTTransUtil.shared.targetLanguage
@@ -211,7 +278,7 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
         }
         
         HTTransUtil.shared.translate(type: .text, text: text) { result, type, time, resultText in
-
+            
             if self.isTopTrans {
                 let temp = HTTransUtil.shared.sourceLanguage
                 HTTransUtil.shared.sourceLanguage = HTTransUtil.shared.targetLanguage
@@ -221,6 +288,8 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
             if result, resultText != nil, resultText!.count > 0 {
                 HTTranslatingView.dismiss()
                 DispatchQueue.main.async() {
+                    
+                    self.showAD()
                     
                     self.inputV.inputTextV.text = ""
                     self.inputV.placeHolderLab.isHidden = false
@@ -240,26 +309,25 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
                     
                     self.inputV.inputTextV.resignFirstResponder()
                     
-                        switch type {
-                        case .offline:
-                            HTLog.textpage_success(type: "off")
-                            HTLog.all_1_off(value: time)
-                        case .online:
-                            HTLog.textpage_success(type: "bi")
-                            HTLog.all_1_bi(value: time)
-                        case .equally:
-                            HTLog.textpage_success(type: "sa")
-                            HTLog.all_1_sa()
-                        }
+                    switch type {
+                    case .offline:
+                        HTLog.textpage_success(type: "off")
+                        HTLog.all_1_off(value: time)
+                    case .online:
+                        HTLog.textpage_success(type: "bi")
+                        HTLog.all_1_bi(value: time)
+                    case .equally:
+                        HTLog.textpage_success(type: "sa")
+                        HTLog.all_1_sa()
+                    }
                     
                 }
             } else {
                 HTTranslatingView.dismiss()
-//                self.inputV.inputTextV.resignFirstResponder()
                 ZKProgressHUD.showMessage("Error, please try it again", autoDismissDelay: 1.7)
             }
             
         }
     }
-
+    
 }

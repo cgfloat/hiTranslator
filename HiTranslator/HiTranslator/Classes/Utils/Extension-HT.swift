@@ -32,4 +32,12 @@ extension Notification.Name {
         public static let refreshText = Notification.Name(rawValue: "refreshText")
         public static let refreshOcr = Notification.Name(rawValue: "refreshOcr")
     }
+    
+    public struct Remote {
+        public static let config = Notification.Name(rawValue: "remoteConfig")
+    }
+    
+    public struct AD {
+        public static let transNative = Notification.Name(rawValue: "transNative")
+    }
 }

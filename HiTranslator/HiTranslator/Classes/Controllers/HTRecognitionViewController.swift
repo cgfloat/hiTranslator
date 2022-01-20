@@ -36,6 +36,7 @@ class HTRecognitionViewController: UIViewController, HTNetworkProtocal {
         let v = HTPhotoTopView.loadFromXib()
         v.leftActionBlock = { [weak self] in
             HTLog.back()
+            self?.showBackAD()
             if self?.canRecognition == true {
                 self?.captureSession.stopRunning()
             }
@@ -100,6 +101,11 @@ class HTRecognitionViewController: UIViewController, HTNetworkProtocal {
         
         view.backgroundColor = .black
         
+        HTAdverUtil.shared.loadInterstitialAd(type: .photoInter)
+        /// 返回主页广告预加载
+        HTAdverUtil.shared.removeCachefirst(type: .backRoot)
+        HTAdverUtil.shared.loadInterstitialAd(type: .backRoot)
+        
         view.addSubview(captureSessionV)
         view.addSubview(startPhotoBtn)
         startPhotoBtn.snp.makeConstraints { make in
@@ -144,6 +150,15 @@ class HTRecognitionViewController: UIViewController, HTNetworkProtocal {
             self.topV.targetLab.text = UserDefaults.standard.value(forKey: LaguageString.ocrTargetTitle) as? String
         }
         
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.Remote.config, object: nil, queue: nil) { noti in
+            if let vc = self.presentedViewController {
+                if let subVC = vc.presentedViewController {
+                    subVC.dismiss(animated: false, completion: nil)
+                }
+                vc.dismiss(animated: false, completion: nil)
+            }
+        }
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -154,6 +169,24 @@ class HTRecognitionViewController: UIViewController, HTNetworkProtocal {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         HTTransUtil.shared.setLanguages(type: .ocr)
+    }
+    
+    func showBackAD() {
+        
+        HTAdverUtil.shared.showInterstitialAd(type: .backRoot, complete: { result, ad in
+            if result, let ad = ad {
+                ad.present(fromRootViewController: self)
+            }
+        })
+    }
+    
+    func showAD() {
+        
+        HTAdverUtil.shared.showInterstitialAd(type: .photoInter, complete: { result, ad in
+            if result, let ad = ad {
+                ad.present(fromRootViewController: self)
+            }
+        })
     }
     
     @objc func photoAction(sender: UIButton) {
@@ -199,6 +232,7 @@ class HTRecognitionViewController: UIViewController, HTNetworkProtocal {
                                 self.closeBtn.isHidden = false
                                 model.label.text = resultText
                                 if self.isTransResult == false {
+                                    self.showAD()
                                     if type == .offline {
                                         HTLog.o_success2(type: "off")
                                         HTLog.all_1_off(value: time)
@@ -230,6 +264,7 @@ class HTRecognitionViewController: UIViewController, HTNetworkProtocal {
                     if result {
                         HTTranslatingView.dismiss()
                         DispatchQueue.main.async() {
+                            self.showAD()
                             self.overlayV.isHidden = false
                             self.closeBtn.isHidden = false
                             
