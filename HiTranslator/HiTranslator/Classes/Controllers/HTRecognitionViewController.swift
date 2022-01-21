@@ -37,6 +37,7 @@ class HTRecognitionViewController: UIViewController, HTNetworkProtocal {
         v.leftActionBlock = { [weak self] in
             HTLog.back()
             self?.showBackAD()
+            HTAdverUtil.shared.removeCachefirst(type: .backRoot)
             if self?.canRecognition == true {
                 self?.captureSession.stopRunning()
             }
@@ -103,7 +104,7 @@ class HTRecognitionViewController: UIViewController, HTNetworkProtocal {
         
         HTAdverUtil.shared.loadInterstitialAd(type: .photoInter)
         /// 返回主页广告预加载
-        HTAdverUtil.shared.removeCachefirst(type: .backRoot)
+//        HTAdverUtil.shared.removeCachefirst(type: .backRoot)
         HTAdverUtil.shared.loadInterstitialAd(type: .backRoot)
         
         view.addSubview(captureSessionV)

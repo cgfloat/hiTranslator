@@ -158,7 +158,6 @@ class HTAdverUtil: NSObject {
     func preAllLoadAD() {
         self.loadInterstitialAd(type: .transInter)
         self.loadInterstitialAd(type: .photoInter)
-        self.loadInterstitialAd(type: .vpn)
         
         self.loadNativeAd(type: .transNative)
         self.loadNativeAd(type: .languageNative)
@@ -367,10 +366,10 @@ extension HTAdverUtil {
         }
         switch type {
         case .transNative:
-            if transNativeCanShow == false {
-                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
-                return
-            }
+//            if transNativeCanShow == false {
+//                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
+//                return
+//            }
             if transNativeCache.count > 0 {
                 return
             }
@@ -389,10 +388,10 @@ extension HTAdverUtil {
             transNativeLoader?.delegate = self
             transNativeLoader?.load(GADRequest())
         case .languageNative:
-            if languageNativeCanShow == false {
-                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
-                return
-            }
+//            if languageNativeCanShow == false {
+//                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
+//                return
+//            }
             if languageNativeCache.count > 0 {
                 return
             }
@@ -567,7 +566,7 @@ extension HTAdverUtil {
             break
         }
         
-        removeCachefirst(type: type)
+//        removeCachefirst(type: type)
     }
     
     func stopNativeTimer(type: HTAdvertiseType) {

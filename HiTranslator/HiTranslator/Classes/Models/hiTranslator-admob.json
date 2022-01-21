@@ -1,5 +1,5 @@
 {
-    "totalShowCount":50,
+    "totalShowCount":1000,
     "totalClickCount":5,
     "loading":[
         {
@@ -19,12 +19,12 @@
         },
         {
             "adId":"ca-app-pub-3940256099942544/5135589807",
-            "adSort":3,
+            "adSort":5,
             "adType":"interstitial"
         },
         {
             "adId":"ca-app-pub-3940256099942544/4411468910",
-            "adSort":5,
+            "adSort":3,
             "adType":"interstitial"
         }
     ],

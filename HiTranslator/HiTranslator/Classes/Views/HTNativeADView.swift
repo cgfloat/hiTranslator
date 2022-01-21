@@ -27,6 +27,8 @@ class HTNativeADView: GADNativeAdView {
     }
     @IBOutlet weak var installLabel: UILabel! {
         didSet {
+            installLabel.layer.cornerRadius = 8
+            installLabel.clipsToBounds = true
             callToActionView = installLabel
         }
     }

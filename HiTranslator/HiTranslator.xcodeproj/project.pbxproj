@@ -43,6 +43,8 @@
 		4AAF426527858CFC004D4C8D /* HTSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF426327858CFC004D4C8D /* HTSetTableViewCell.swift */; };
 		4AAF426627858CFC004D4C8D /* HTSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF426427858CFC004D4C8D /* HTSetTableViewCell.xib */; };
 		4AB0B0A32788095900539A97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4AB0B0A22788095900539A97 /* GoogleService-Info.plist */; };
+		4AD21B51279A5F6100AFD74A /* HTNativePlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD21B50279A5F6100AFD74A /* HTNativePlaceHolderView.swift */; };
+		4AD21B53279A5F6E00AFD74A /* HTNativePlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD21B52279A5F6E00AFD74A /* HTNativePlaceHolderView.xib */; };
 		4AE207482786C0AF00DA6A25 /* HTTransUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE207472786C0AF00DA6A25 /* HTTransUtil.swift */; };
 		4AE2074A2786C42C00DA6A25 /* HTWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE207492786C42C00DA6A25 /* HTWebview.swift */; };
 		4AE2074C27870BB100DA6A25 /* HTOcrTransModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2074B27870BB100DA6A25 /* HTOcrTransModel.swift */; };
@@ -88,6 +90,8 @@
 		4AAF426327858CFC004D4C8D /* HTSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTSetTableViewCell.swift; sourceTree = "<group>"; };
 		4AAF426427858CFC004D4C8D /* HTSetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTSetTableViewCell.xib; sourceTree = "<group>"; };
 		4AB0B0A22788095900539A97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4AD21B50279A5F6100AFD74A /* HTNativePlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTNativePlaceHolderView.swift; sourceTree = "<group>"; };
+		4AD21B52279A5F6E00AFD74A /* HTNativePlaceHolderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTNativePlaceHolderView.xib; sourceTree = "<group>"; };
 		4AE207472786C0AF00DA6A25 /* HTTransUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTransUtil.swift; sourceTree = "<group>"; };
 		4AE207492786C42C00DA6A25 /* HTWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTWebview.swift; sourceTree = "<group>"; };
 		4AE2074B27870BB100DA6A25 /* HTOcrTransModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTOcrTransModel.swift; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 				4AE207492786C42C00DA6A25 /* HTWebview.swift */,
 				4AAB487E279952F60038294F /* HTNativeADView.swift */,
 				4AAB4880279953040038294F /* HTNativeADView.xib */,
+				4AD21B50279A5F6100AFD74A /* HTNativePlaceHolderView.swift */,
+				4AD21B52279A5F6E00AFD74A /* HTNativePlaceHolderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 				4AAF4223278539AD004D4C8D /* Assets.xcassets in Resources */,
 				4AA823E62795508A00261C68 /* hiTranslator-admob.json in Resources */,
 				4AAF425627858B95004D4C8D /* HTLanuchView.xib in Resources */,
+				4AD21B53279A5F6E00AFD74A /* HTNativePlaceHolderView.xib in Resources */,
 				4AAF426227858CE6004D4C8D /* HTLanguageTableViewCell.xib in Resources */,
 				4AAF4221278539A9004D4C8D /* Main.storyboard in Resources */,
 				4AAF425A27858C69004D4C8D /* HTInputView.xib in Resources */,
@@ -416,6 +423,7 @@
 				4AAF421E278539A9004D4C8D /* ViewController.swift in Sources */,
 				4AAF425027858B59004D4C8D /* HTTranslatingView.swift in Sources */,
 				4AAF4238278546E8004D4C8D /* HTRecognitionViewController.swift in Sources */,
+				4AD21B51279A5F6100AFD74A /* HTNativePlaceHolderView.swift in Sources */,
 				4AA823E227953C5100261C68 /* HTAdverUtil.swift in Sources */,
 				4AAF426527858CFC004D4C8D /* HTSetTableViewCell.swift in Sources */,
 				4AAF4236278546AA004D4C8D /* HTTransViewController.swift in Sources */,

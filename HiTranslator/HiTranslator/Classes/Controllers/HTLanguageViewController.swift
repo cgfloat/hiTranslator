@@ -27,8 +27,9 @@ class HTLanguageViewController: UIViewController {
             HTLog.back()
             if self?.isFromText == true {
                 self?.showAD()
+                HTAdverUtil.shared.removeCachefirst(type: .backRoot)
             }
-            HTAdverUtil.shared.loadNativeAd(type: .languageNative)
+//            HTAdverUtil.shared.loadNativeAd(type: .languageNative)
             self?.navigationController?.popViewController(animated: true)
         }
         return v
@@ -45,6 +46,12 @@ class HTLanguageViewController: UIViewController {
         tableV.register(UINib(nibName: String(describing: HTLanguageTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: HTLanguageTableViewCell.self))
         return tableV
     }()
+    
+    lazy var placeHolderV: HTNativePlaceHolderView = {
+        let view = HTNativePlaceHolderView.loadFromXib()
+        view.isHidden = false
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,16 +60,17 @@ class HTLanguageViewController: UIViewController {
         
         if self.isFromText == true {
             /// 返回主页广告预加载
-            HTAdverUtil.shared.removeCachefirst(type: .backRoot)
+//            HTAdverUtil.shared.removeCachefirst(type: .backRoot)
             HTAdverUtil.shared.loadInterstitialAd(type: .backRoot)
         }
         
         view.addSubview(topV)
         view.addSubview(nativeV)
+        view.addSubview(placeHolderV)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(topV.snp.bottom)
+            make.top.equalTo(topV.snp.bottom).offset(60)
             make.bottom.equalToSuperview()
         }
         
@@ -83,21 +91,24 @@ class HTLanguageViewController: UIViewController {
         
         /// language页面原生广告
         HTAdverUtil.shared.showNativeAd(type: .languageNative, complete: { [weak self] result, ad in
-            if result == true, self?.nativeV.isHidden == true { /// cache 有则加载
+            if result == true { /// cache 有则加载
                 self?.nativeV.isHidden = false
                 self?.nativeV.nativeAd = ad
                 HTAdverUtil.shared.addShowCount()
                 self?.resetConstraints()
+                HTAdverUtil.shared.removeCachefirst(type: .languageNative)
+                HTAdverUtil.shared.loadNativeAd(type: .languageNative)
             }
         })
     }
     
     func resetConstraints() {
-        tableView.snp.remakeConstraints { make in
-            make.top.equalTo(topV.snp.bottom).offset(60)
-            make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
+//        tableView.snp.remakeConstraints { make in
+//            make.top.equalTo(topV.snp.bottom).offset(60)
+//            make.left.right.equalToSuperview()
+//            make.bottom.equalToSuperview()
+//        }
+        self.placeHolderV.isHidden = true
     }
     
     func showAD() {

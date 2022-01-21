@@ -99,6 +99,12 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
         return view
     }()
     
+    lazy var placeHolderV: HTNativePlaceHolderView = {
+        let view = HTNativePlaceHolderView.loadFromXib()
+        view.isHidden = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -108,9 +114,10 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
         
         view.addSubview(topV)
         view.addSubview(nativeV)
+        view.addSubview(placeHolderV)
         view.addSubview(resultV)
         resultV.snp.makeConstraints { make in
-            make.top.equalTo(topV.snp.bottom)
+            make.top.equalTo(topV.snp.bottom).offset(68)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
             make.bottom.equalTo(photoBtn.snp.top).offset(-80)
@@ -170,23 +177,31 @@ class HTRootViewController: UIViewController, HTNetworkProtocal {
         if isFirstShow == false {
             /// 翻译页面原生广告
             HTAdverUtil.shared.showNativeAd(type: .transNative, complete: { [weak self] result, ad in
-                if result == true, self?.nativeV.isHidden == true { /// cache 有则加载
+                if result == true { /// cache 有则加载
                     self?.nativeV.isHidden = false
                     self?.nativeV.nativeAd = ad
                     HTAdverUtil.shared.addShowCount()
                     self?.resetConstraints()
+                    HTAdverUtil.shared.removeCachefirst(type: .transNative)
+                    HTAdverUtil.shared.loadNativeAd(type: .transNative)
                 }
             })
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        HTAdverUtil.shared.loadNativeAd(type: .transNative)
+    }
+    
     func resetConstraints() {
-        resultV.snp.remakeConstraints { make in
-            make.top.equalTo(topV.snp.bottom).offset(68)
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-16)
-            make.bottom.equalTo(photoBtn.snp.top).offset(-15)
-        }
+//        resultV.snp.remakeConstraints { make in
+//            make.top.equalTo(topV.snp.bottom).offset(68)
+//            make.left.equalToSuperview().offset(16)
+//            make.right.equalToSuperview().offset(-16)
+//            make.bottom.equalTo(photoBtn.snp.top).offset(-15)
+//        }
+        self.placeHolderV.isHidden = true
     }
     
     /// 展示广告
