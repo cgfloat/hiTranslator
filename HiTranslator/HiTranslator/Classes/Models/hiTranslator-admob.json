@@ -1,155 +1,76 @@
 {
-    "totalShowCount":1000,
+    "totalShowCount":30,
     "totalClickCount":5,
     "loading":[
         {
-            "adId":"ca-app-pub-3940256099942544/4411468910Loading2",
+            "adId":"ca-app-pub-3170055959558002/9226942156",
             "adSort":2,
             "adType":"interstitial"
         },
         {
-            "adId":"ca-app-pub-3940256099942544/5662855259",
-            "adSort":4,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/4411468910Loading1",
+            "adId":"ca-app-pub-3170055959558002/5312921339",
             "adSort":1,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/5135589807",
-            "adSort":5,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/4411468910",
-            "adSort":3,
             "adType":"interstitial"
         }
     ],
     "transInter":[
         {
-            "adId":"ca-app-pub-3940256099942544/4411468910text2",
+            "adId":"ca-app-pub-3170055959558002/6600778816",
             "adSort":2,
             "adType":"interstitial"
         },
         {
-            "adId":"ca-app-pub-3940256099942544/5662855259",
-            "adSort":4,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/4411468910text1",
+            "adId":"ca-app-pub-3170055959558002/1348452131",
             "adSort":1,
             "adType":"interstitial"
         },
-        {
-            "adId":"ca-app-pub-3940256099942544/5135589807",
-            "adSort":3,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/4411468910",
-            "adSort":5,
-            "adType":"interstitial"
-        }
     ],
     "transNative":[
+
         {
-            "adId":"ca-app-pub-3940256099942544/3986624511",
-            "adSort":3,
-            "adType":"native"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/3986624511transNative1",
-            "adSort":1,
-            "adType":"native"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/2521693316",
-            "adSort":4,
-            "adType":"native"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/3986624511transNative2",
+            "adId":"ca-app-pub-3170055959558002/1655573897",
             "adSort":2,
+            "adType":"native"
+        },
+        {
+            "adId":"ca-app-pub-3170055959558002/2469962117",
+            "adSort":1,
             "adType":"native"
         }
     ],
     "photoInter":[
         {
-            "adId":"ca-app-pub-3940256099942544/4411468910takePic2",
+            "adId":"ca-app-pub-3170055959558002/7530717103",
             "adSort":2,
             "adType":"interstitial"
         },
         {
-            "adId":"ca-app-pub-3940256099942544/5662855259",
-            "adSort":4,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/4411468910takePic1",
+            "adId":"ca-app-pub-3170055959558002/9342492222",
             "adSort":1,
             "adType":"interstitial"
         },
-        {
-            "adId":"ca-app-pub-3940256099942544/5135589807",
-            "adSort":3,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/4411468910",
-            "adSort":5,
-            "adType":"interstitial"
-        }
     ],
     "languageNative":[
         {
-            "adId":"ca-app-pub-3940256099942544/3986624511",
-            "adSort":3,
-            "adType":"native"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/3986624511languageNative1",
+            "adId":"ca-app-pub-3170055959558002/2278390428",
             "adSort":1,
             "adType":"native"
         },
         {
-            "adId":"ca-app-pub-3940256099942544/2521693316",
-            "adSort":4,
-            "adType":"native"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/3986624511languageNative2",
+            "adId":"ca-app-pub-3170055959558002/8652227089",
             "adSort":2,
             "adType":"native"
         }
     ],
     "backRoot":[
         {
-            "adId":"ca-app-pub-3940256099942544/4411468910back2",
+            "adId":"ca-app-pub-3170055959558002/4515679136",
             "adSort":2,
             "adType":"interstitial"
         },
         {
-            "adId":"ca-app-pub-3940256099942544/5662855259",
-            "adSort":4,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/4411468910back1",
+            "adId":"ca-app-pub-3170055959558002/3202597466",
             "adSort":1,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/5135589807",
-            "adSort":3,
-            "adType":"interstitial"
-        },
-        {
-            "adId":"ca-app-pub-3940256099942544/4411468910",
-            "adSort":5,
             "adType":"interstitial"
         }
     ]

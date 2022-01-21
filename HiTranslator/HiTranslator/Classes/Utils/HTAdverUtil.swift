@@ -121,15 +121,15 @@ class HTAdverUtil: NSObject {
     private override init() {
         super.init()
         
-//        if UserDefaults.standard.value(forKey: RemoteString.config) == nil || UserDefaults.standard.value(forKey: RemoteString.config) as! String == "" {
+        if UserDefaults.standard.value(forKey: RemoteString.config) == nil || UserDefaults.standard.value(forKey: RemoteString.config) as! String == "" {
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
-//        } else {
-//            let jsonString = UserDefaults.standard.value(forKey: RemoteString.config) as! String
-//            let jsonData = Data(base64Encoded: jsonString) ?? Data()
-//            adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: jsonData)
-//        }
+        } else {
+            let jsonString = UserDefaults.standard.value(forKey: RemoteString.config) as! String
+            let jsonData = Data(base64Encoded: jsonString) ?? Data()
+            adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: jsonData)
+        }
         
         HTRootUtil.admodel = adInfo
         HTLog.log("adInfo: \(adInfo)")
