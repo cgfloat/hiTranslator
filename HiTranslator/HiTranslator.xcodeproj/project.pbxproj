@@ -12,6 +12,7 @@
 		4AA823E62795508A00261C68 /* hiTranslator-admob.json in Resources */ = {isa = PBXBuildFile; fileRef = 4AA823E52795508A00261C68 /* hiTranslator-admob.json */; };
 		4AAB487F279952F60038294F /* HTNativeADView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB487E279952F60038294F /* HTNativeADView.swift */; };
 		4AAB4881279953040038294F /* HTNativeADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB4880279953040038294F /* HTNativeADView.xib */; };
+		4AAB608E27B0ADE30083C3D3 /* hiTranslator-admob-release.json in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB608D27B0ADE30083C3D3 /* hiTranslator-admob-release.json */; };
 		4AAF421A278539A9004D4C8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF4219278539A9004D4C8D /* AppDelegate.swift */; };
 		4AAF421E278539A9004D4C8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF421D278539A9004D4C8D /* ViewController.swift */; };
 		4AAF4221278539A9004D4C8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF421F278539A9004D4C8D /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		4AA823E52795508A00261C68 /* hiTranslator-admob.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "hiTranslator-admob.json"; sourceTree = "<group>"; };
 		4AAB487E279952F60038294F /* HTNativeADView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTNativeADView.swift; sourceTree = "<group>"; };
 		4AAB4880279953040038294F /* HTNativeADView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTNativeADView.xib; sourceTree = "<group>"; };
+		4AAB608D27B0ADE30083C3D3 /* hiTranslator-admob-release.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "hiTranslator-admob-release.json"; sourceTree = "<group>"; };
 		4AAF4216278539A9004D4C8D /* HiTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAF4219278539A9004D4C8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AAF421D278539A9004D4C8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		4AAF4230278543D8004D4C8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4AAB608D27B0ADE30083C3D3 /* hiTranslator-admob-release.json */,
 				4AA823E52795508A00261C68 /* hiTranslator-admob.json */,
 				4AE2074B27870BB100DA6A25 /* HTOcrTransModel.swift */,
 			);
@@ -307,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AAB608E27B0ADE30083C3D3 /* hiTranslator-admob-release.json in Resources */,
 				4AAF424A27858AB6004D4C8D /* HTTopView.xib in Resources */,
 				4AAF4226278539AD004D4C8D /* LaunchScreen.storyboard in Resources */,
 				4AAF425227858B63004D4C8D /* HTTranslatingView.xib in Resources */,

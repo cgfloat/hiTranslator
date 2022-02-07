@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class HTRemoteUtil: NSObject {
-
+    
     static let shared = HTRemoteUtil()
     
     var config = RemoteConfig.remoteConfig()
@@ -18,9 +18,16 @@ class HTRemoteUtil: NSObject {
         
         var str = ""
         if UserDefaults.standard.value(forKey: RemoteString.config) == nil || UserDefaults.standard.value(forKey: RemoteString.config) as! String == "" {
+#if DEBUG
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             str = fileData.base64EncodedString()
+#else
+            let filePath = Bundle.main.path(forResource: "hiTranslator-admob-release", ofType: "json")!
+            let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
+            str = fileData.base64EncodedString()
+#endif
+            
         } else {
             str = UserDefaults.standard.value(forKey: RemoteString.config) as! String
         }
@@ -43,7 +50,7 @@ class HTRemoteUtil: NSObject {
             }
             HTLog.log("Remote config successfully fetched")
             self.activateConfig()
-           
+            
         }
     }
     
@@ -65,6 +72,6 @@ class HTRemoteUtil: NSObject {
             }
         }
     }
-
+    
 }
 

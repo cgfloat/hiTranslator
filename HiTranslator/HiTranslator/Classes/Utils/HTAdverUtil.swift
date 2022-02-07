@@ -45,7 +45,7 @@ class HTAdvertiseCache: NSObject {
 }
 
 class HTAdverUtil: NSObject {
-
+    
     static let shared = HTAdverUtil()
     
     /// 缓存定时器
@@ -69,7 +69,7 @@ class HTAdverUtil: NSObject {
             photoInterItems = adInfo.photoInter.sorted(by: { $0.adSort < $1.adSort })
             languageNativeItems = adInfo.languageNative.sorted(by: { $0.adSort < $1.adSort })
             backRootItems = adInfo.backRoot.sorted(by: { $0.adSort < $1.adSort })
-//            vpnItems = adInfo.vpn.sorted(by: { $0.advertiseSort < $1.advertiseSort })
+            //            vpnItems = adInfo.vpn.sorted(by: { $0.advertiseSort < $1.advertiseSort })
             
             preAllLoadAD()
         }
@@ -107,7 +107,7 @@ class HTAdverUtil: NSObject {
     var transNativeCache = [[TimeInterval: HTAdvertiseCache]]()
     var transNativeIndex = 0
     var transNativeSuccessComplete: ((_ ad: GADNativeAd?) -> Void)?
-//    var transNativeTimer: Timer?
+    //    var transNativeTimer: Timer?
     var transNativeCanShow = true
     
     // 选择语言原生
@@ -115,16 +115,22 @@ class HTAdverUtil: NSObject {
     var languageNativeLoader: GADAdLoader?
     var languageNativeCache = [[TimeInterval: HTAdvertiseCache]]()
     var languageNativeIndex = 0
-//    var languageNativeTimer: Timer?
+    //    var languageNativeTimer: Timer?
     var languageNativeCanShow = true
     
     private override init() {
         super.init()
         
         if UserDefaults.standard.value(forKey: RemoteString.config) == nil || UserDefaults.standard.value(forKey: RemoteString.config) as! String == "" {
+#if DEBUG
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
+#else
+            let filePath = Bundle.main.path(forResource: "hiTranslator-admob-release", ofType: "json")!
+            let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
+            adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
+#endif
         } else {
             let jsonString = UserDefaults.standard.value(forKey: RemoteString.config) as! String
             let jsonData = Data(base64Encoded: jsonString) ?? Data()
@@ -141,7 +147,7 @@ class HTAdverUtil: NSObject {
         photoInterItems = adInfo.photoInter.sorted(by: { $0.adSort < $1.adSort })
         languageNativeItems = adInfo.languageNative.sorted(by: { $0.adSort < $1.adSort })
         backRootItems = adInfo.backRoot.sorted(by: { $0.adSort < $1.adSort })
-//        vpnItems = adInfo.vpn.sorted(by: { $0.advertiseSort < $1.advertiseSort })
+        //        vpnItems = adInfo.vpn.sorted(by: { $0.advertiseSort < $1.advertiseSort })
         
         // setup counts
         setupAdmobCounts()
@@ -366,10 +372,10 @@ extension HTAdverUtil {
         }
         switch type {
         case .transNative:
-//            if transNativeCanShow == false {
-//                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
-//                return
-//            }
+            //            if transNativeCanShow == false {
+            //                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
+            //                return
+            //            }
             if transNativeCache.count > 0 {
                 return
             }
@@ -388,10 +394,10 @@ extension HTAdverUtil {
             transNativeLoader?.delegate = self
             transNativeLoader?.load(GADRequest())
         case .languageNative:
-//            if languageNativeCanShow == false {
-//                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
-//                return
-//            }
+            //            if languageNativeCanShow == false {
+            //                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
+            //                return
+            //            }
             if languageNativeCache.count > 0 {
                 return
             }
@@ -445,7 +451,7 @@ extension HTAdverUtil {
             ad?.delegate = self
             complete(true, ad)
             self.startNativeTimer(type: type)
-//            self.removeCachefirst(type: type)
+            //            self.removeCachefirst(type: type)
         } else {
             self.loadNativeAd(type: type)
             complete(false, nil)
@@ -461,11 +467,11 @@ extension HTAdverUtil: GADNativeAdDelegate {
     }
     
     func nativeAdWillPresentScreen(_ nativeAd: GADNativeAd) {
-//        self.addShowCount()
+        //        self.addShowCount()
     }
     
     func nativeAdDidRecordImpression(_ nativeAd: GADNativeAd) {
-//        self.addShowCount()
+        //        self.addShowCount()
     }
 }
 // MARK: - GADAdLoaderDelegate GADNativeAdLoaderDelegate 原生广告加载代理
@@ -517,7 +523,7 @@ extension HTAdverUtil: GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
 extension HTAdverUtil: GADFullScreenContentDelegate {
     
     func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-//        print("Ad did fail to present full screen content.")
+        //        print("Ad did fail to present full screen content.")
         if let type = self.type, type != .backRoot {
             self.removeCachefirst(type: type)
             self.loadInterstitialAd(type: type)
@@ -526,12 +532,12 @@ extension HTAdverUtil: GADFullScreenContentDelegate {
     }
     
     func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-//        print("Ad did present full screen content.")
+        //        print("Ad did present full screen content.")
         self.addShowCount()
     }
     
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-//        print("Ad did dismiss full screen content.")
+        //        print("Ad did dismiss full screen content.")
         if let type = self.type, type != .backRoot {
             self.removeCachefirst(type: type)
             self.loadInterstitialAd(type: type)
@@ -566,7 +572,7 @@ extension HTAdverUtil {
             break
         }
         
-//        removeCachefirst(type: type)
+        //        removeCachefirst(type: type)
     }
     
     func stopNativeTimer(type: HTAdvertiseType) {
