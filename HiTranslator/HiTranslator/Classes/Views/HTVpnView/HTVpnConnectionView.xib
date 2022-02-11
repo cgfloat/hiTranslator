@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HTVpnConnectionView" customModule="HiTranslator" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="656"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vpn_imgbg" translatesAutoresizingMaskIntoConstraints="NO" id="roU-Dw-JWf">
+                    <rect key="frame" x="0.0" y="227" width="375" height="449"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="roU-Dw-JWf" secondAttribute="height" multiplier="360:431" id="a5J-eh-H3G"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="countrySmart" translatesAutoresizingMaskIntoConstraints="NO" id="Mu4-BM-ZoA">
+                    <rect key="frame" x="127.5" y="480.5" width="28" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="0iN-Yu-jqv"/>
+                        <constraint firstAttribute="width" constant="28" id="2f9-un-HXq"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vpn is disconnected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMp-SE-Zcf">
+                    <rect key="frame" x="138" y="359" width="131" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8h-Re-u4E">
+                    <rect key="frame" x="119" y="363" width="9" height="9"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="9" id="FAo-f1-nyi"/>
+                        <constraint firstAttribute="width" constant="9" id="pQq-pB-jzW"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agP-dL-vTt">
+                    <rect key="frame" x="85.5" y="127" width="204" height="204"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="204" id="Bte-jh-goX"/>
+                        <constraint firstAttribute="width" constant="204" id="HcM-65-wE6"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="vpn_disconnected_btn"/>
+                    <connections>
+                        <action selector="connectBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="VbA-en-nL9"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vpn_disconnected" translatesAutoresizingMaskIntoConstraints="NO" id="IUx-l4-glC">
+                    <rect key="frame" x="169.5" y="211" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="3RN-aE-9TL"/>
+                        <constraint firstAttribute="height" constant="36" id="FVY-Ia-a5a"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart Server" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ju-ea-Iea">
+                    <rect key="frame" x="171.5" y="486" width="84.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ij-w5-dbV">
+                    <rect key="frame" x="85.5" y="127" width="204" height="204"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="204" id="2Xm-o9-tMR"/>
+                        <constraint firstAttribute="width" constant="204" id="9kE-HD-pXE"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bMp-SE-Zcf" firstAttribute="top" secondItem="agP-dL-vTt" secondAttribute="bottom" constant="28" id="0A5-2U-cff"/>
+                <constraint firstItem="IUx-l4-glC" firstAttribute="centerX" secondItem="agP-dL-vTt" secondAttribute="centerX" id="4Uk-R5-cd5"/>
+                <constraint firstItem="roU-Dw-JWf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5BQ-o9-rrG"/>
+                <constraint firstItem="agP-dL-vTt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9bN-d1-Eim"/>
+                <constraint firstItem="Mu4-BM-ZoA" firstAttribute="centerY" secondItem="3ju-ea-Iea" secondAttribute="centerY" id="Aab-fz-et5"/>
+                <constraint firstItem="agP-dL-vTt" firstAttribute="top" secondItem="roU-Dw-JWf" secondAttribute="top" constant="-100" id="Cn8-Ab-qT4"/>
+                <constraint firstItem="bMp-SE-Zcf" firstAttribute="leading" secondItem="p8h-Re-u4E" secondAttribute="trailing" constant="10" id="G92-mB-Fby"/>
+                <constraint firstItem="5ij-w5-dbV" firstAttribute="centerX" secondItem="agP-dL-vTt" secondAttribute="centerX" id="Mpm-fy-fab"/>
+                <constraint firstAttribute="bottom" secondItem="roU-Dw-JWf" secondAttribute="bottom" constant="-20" id="NbE-u1-UlL"/>
+                <constraint firstItem="IUx-l4-glC" firstAttribute="centerY" secondItem="agP-dL-vTt" secondAttribute="centerY" id="UfB-lB-WzU"/>
+                <constraint firstItem="3ju-ea-Iea" firstAttribute="leading" secondItem="Mu4-BM-ZoA" secondAttribute="trailing" constant="16" id="akr-Re-MgH"/>
+                <constraint firstItem="roU-Dw-JWf" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="buH-Vp-gNn"/>
+                <constraint firstItem="bMp-SE-Zcf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="16" id="dkj-6c-spw"/>
+                <constraint firstItem="3ju-ea-Iea" firstAttribute="top" secondItem="bMp-SE-Zcf" secondAttribute="bottom" constant="110" id="lS4-f5-2ek"/>
+                <constraint firstItem="p8h-Re-u4E" firstAttribute="centerY" secondItem="bMp-SE-Zcf" secondAttribute="centerY" id="qdB-n8-ZsF"/>
+                <constraint firstItem="5ij-w5-dbV" firstAttribute="centerY" secondItem="agP-dL-vTt" secondAttribute="centerY" id="tCJ-sq-Btk"/>
+                <constraint firstItem="3ju-ea-Iea" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="26" id="tcq-O0-qBX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="centerAniView" destination="5ij-w5-dbV" id="b4L-V3-rTB"/>
+                <outlet property="connectBtn" destination="agP-dL-vTt" id="r76-WD-aCP"/>
+                <outlet property="connectBtnImg" destination="IUx-l4-glC" id="T7B-Kn-7Mo"/>
+                <outlet property="connectStateLab" destination="bMp-SE-Zcf" id="0pJ-ee-gC5"/>
+                <outlet property="connectStateView" destination="p8h-Re-u4E" id="dap-FF-fuw"/>
+                <outlet property="serverImg" destination="Mu4-BM-ZoA" id="8ug-M6-ZZp"/>
+                <outlet property="serverLab" destination="3ju-ea-Iea" id="SJM-nj-1F9"/>
+            </connections>
+            <point key="canvasLocation" x="103.62318840579711" y="15.401785714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="countrySmart" width="28" height="28"/>
+        <image name="vpn_disconnected" width="36" height="36"/>
+        <image name="vpn_disconnected_btn" width="204" height="204"/>
+        <image name="vpn_imgbg" width="360" height="431"/>
+    </resources>
+</document>

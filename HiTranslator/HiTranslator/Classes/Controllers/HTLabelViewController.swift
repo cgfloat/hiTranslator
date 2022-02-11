@@ -18,7 +18,7 @@ class HTLabelViewController: UIViewController {
     lazy var topV: HTTopView = {
         let v = HTTopView.loadFromXib()
         v.titleLab.text = type == .at ? "Terms of Service" : "Privacy Policy"
-        v.leftBtn.setImage(UIImage(named: "back_dark"), for: .normal)
+        v.rightBtn.isHidden = true
         v.leftActionBlock = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

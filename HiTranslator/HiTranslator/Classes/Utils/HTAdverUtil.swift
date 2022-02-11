@@ -15,7 +15,9 @@ enum HTAdvertiseType: String, Codable {
     case photoInter = "photoInter"
     case languageNative = "languageNative"
     case backRoot = "backRoot"
-    case vpn = "vpn"
+    case vpnHome = "vpnHome"
+    case rootHome = "rootHome"
+    case vpnConnect = "vpnConnect"
 }
 
 struct HTAdvertiseItem: Codable {
@@ -32,8 +34,13 @@ struct HTAdvertiseModel: Codable {
     var photoInter: [HTAdvertiseItem]!
     var languageNative: [HTAdvertiseItem]!
     var backRoot: [HTAdvertiseItem]!
+    var rootHome: [HTAdvertiseItem]!
+    var vpnHome: [HTAdvertiseItem]!
+    var vpnConnect: [HTAdvertiseItem]!
     var totalShowCount: Int!
     var totalClickCount: Int!
+    
+    var vpnServers: [HTServerModel]!
 }
 
 /// 缓存广告
@@ -59,21 +66,7 @@ class HTAdverUtil: NSObject {
     var adCounts: HTAdvertiseCounts?
     
     /// 广告数据
-    var adInfo = HTAdvertiseModel() {
-        didSet {
-            removeAllCache()
-            
-            loadingAdItems = adInfo.loading.sorted(by: { $0.adSort < $1.adSort })
-            transInterItems = adInfo.transInter.sorted(by: { $0.adSort < $1.adSort })
-            transNativeItems = adInfo.transNative.sorted(by: { $0.adSort < $1.adSort })
-            photoInterItems = adInfo.photoInter.sorted(by: { $0.adSort < $1.adSort })
-            languageNativeItems = adInfo.languageNative.sorted(by: { $0.adSort < $1.adSort })
-            backRootItems = adInfo.backRoot.sorted(by: { $0.adSort < $1.adSort })
-            //            vpnItems = adInfo.vpn.sorted(by: { $0.advertiseSort < $1.advertiseSort })
-            
-            preAllLoadAD()
-        }
-    }
+    var adInfo = HTAdvertiseModel()
     // 冷热加载
     var loadingAdItems = [HTAdvertiseItem]()
     var loadingCache = [[TimeInterval: HTAdvertiseCache]]()
@@ -95,11 +88,12 @@ class HTAdverUtil: NSObject {
     var backRootCache = [[TimeInterval: HTAdvertiseCache]]()
     var backRootIsLoding = false
     var backRootIndex = 0
-    // vpn
-    var vpnItems = [HTAdvertiseItem]()
-    var vpnCache = [[TimeInterval: HTAdvertiseCache]]()
-    var vpnIsLoding = false
-    var vpnIndex = 0
+    // vpn连接
+    var vpnConnectItems = [HTAdvertiseItem]()
+    var vpnConnectCache = [[TimeInterval: HTAdvertiseCache]]()
+    var vpnConnectIsLoding = false
+    var vpnConnectIndex = 0
+    var hasCallBack = false //保证一次广告请求在规定时间内有且只有一起回调
     
     /// 翻译原生
     var transNativeItems = [HTAdvertiseItem]()
@@ -107,7 +101,6 @@ class HTAdverUtil: NSObject {
     var transNativeCache = [[TimeInterval: HTAdvertiseCache]]()
     var transNativeIndex = 0
     var transNativeSuccessComplete: ((_ ad: GADNativeAd?) -> Void)?
-    //    var transNativeTimer: Timer?
     var transNativeCanShow = true
     
     // 选择语言原生
@@ -115,8 +108,21 @@ class HTAdverUtil: NSObject {
     var languageNativeLoader: GADAdLoader?
     var languageNativeCache = [[TimeInterval: HTAdvertiseCache]]()
     var languageNativeIndex = 0
-    //    var languageNativeTimer: Timer?
     var languageNativeCanShow = true
+    
+    // VPN 主页原生
+    var vpnHomeNativeItems = [HTAdvertiseItem]()
+    var vpnHomeNativeLoader: GADAdLoader?
+    var vpnHomeNativeCache = [[TimeInterval: HTAdvertiseCache]]()
+    var vpnHomeNativeIndex = 0
+    var vpnHomeNativeCanShow = true
+    
+    // root主页原生
+    var rootHomeNativeItems = [HTAdvertiseItem]()
+    var rootHomeNativeLoader: GADAdLoader?
+    var rootHomeNativeCache = [[TimeInterval: HTAdvertiseCache]]()
+    var rootHomeNativeIndex = 0
+    var rootHomeNativeCanShow = true
     
     private override init() {
         super.init()
@@ -126,15 +132,18 @@ class HTAdverUtil: NSObject {
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
+            HTServerList = adInfo.vpnServers
 #else
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob-release", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
+            HTServerList = adInfo.vpnServers
 #endif
         } else {
             let jsonString = UserDefaults.standard.value(forKey: RemoteString.config) as! String
             let jsonData = Data(base64Encoded: jsonString) ?? Data()
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: jsonData)
+            HTServerList = adInfo.vpnServers
         }
         
         HTRootUtil.admodel = adInfo
@@ -147,7 +156,9 @@ class HTAdverUtil: NSObject {
         photoInterItems = adInfo.photoInter.sorted(by: { $0.adSort < $1.adSort })
         languageNativeItems = adInfo.languageNative.sorted(by: { $0.adSort < $1.adSort })
         backRootItems = adInfo.backRoot.sorted(by: { $0.adSort < $1.adSort })
-        //        vpnItems = adInfo.vpn.sorted(by: { $0.advertiseSort < $1.advertiseSort })
+        vpnHomeNativeItems = adInfo.vpnHome.sorted(by: { $0.adSort < $1.adSort })
+        rootHomeNativeItems = adInfo.rootHome.sorted(by: { $0.adSort < $1.adSort })
+        vpnConnectItems = adInfo.vpnConnect.sorted(by: { $0.adSort < $1.adSort })
         
         // setup counts
         setupAdmobCounts()
@@ -167,12 +178,14 @@ class HTAdverUtil: NSObject {
         
         self.loadNativeAd(type: .transNative)
         self.loadNativeAd(type: .languageNative)
+        self.loadNativeAd(type: .vpnHome)
+        self.loadNativeAd(type: .rootHome)
     }
 }
 
 extension HTAdverUtil {
     /// 插屏广告加载
-    func loadInterstitialAd(type: HTAdvertiseType, index: Int = 0) {
+    func loadInterstitialAd(type: HTAdvertiseType, index: Int = 0, _ complete:((Bool, GADInterstitialAd?) -> Void)? = nil) {
         // 是否可显示
         if canShowAd() == false {
             if type == .loading {
@@ -252,21 +265,21 @@ extension HTAdverUtil {
             photoInterIndex = index
             photoInterIsLoding = true
             items = photoInterItems
-        case .vpn:
-            if vpnCache.count > 0 {
+        case .vpnConnect:
+            if vpnConnectCache.count > 0 {
                 return
             }
-            if vpnIsLoding {
+            if vpnConnectIsLoding {
                 HTLog.log("[AD] 广告正在加载 type: \(type.rawValue)")
                 return
             }
-            if index > vpnItems.count - 1 {
+            if index > vpnConnectItems.count - 1 {
                 HTLog.log("[AD] 广告加载超过列表个数 type: \(type.rawValue)")
                 return
             }
-            vpnIndex = index
-            vpnIsLoding = true
-            items = vpnItems
+            vpnConnectIndex = index
+            vpnConnectIsLoding = true
+            items = vpnConnectItems
         case .backRoot:
             if backRootCache.count > 0 {
                 return
@@ -300,14 +313,14 @@ extension HTAdverUtil {
                 self.photoInterIsLoding = false
             case .backRoot:
                 self.backRootIsLoding = false
-            case .vpn:
-                self.vpnIsLoding = false
+            case .vpnConnect:
+                self.vpnConnectIsLoding = false
             default:
                 return
             }
             guard error == nil else {
                 HTLog.log("[AD] 广告加载失败 type: \(type.rawValue) 优先级: \(index + 1), unitID: \(unitID)")
-                self.loadInterstitialAd(type: type, index: index + 1)
+                self.loadInterstitialAd(type: type, index: index + 1, complete)
                 return
             }
             
@@ -325,10 +338,16 @@ extension HTAdverUtil {
                 if type == .loading, self.loadingSuccessComplete != nil {
                     self.loadingSuccessComplete!(ad)
                 }
-                
-            } else {
+                if type == .vpnConnect, self.hasCallBack == false{
+                    self.hasCallBack = true
+                    ad.fullScreenContentDelegate = self
+                    self.type = .vpnConnect
+                    complete?(true, ad)
+                }
+            }
+            else {
                 HTLog.log("[AD] 广告加载失败 type: \(type.rawValue) 优先级: \(index + 1), unitID: \(unitID)")
-                self.loadInterstitialAd(type: type, index: index + 1)
+                self.loadInterstitialAd(type: type, index: index + 1, complete)
             }
         }
     }
@@ -364,6 +383,41 @@ extension HTAdverUtil {
         }
     }
     
+    /// 插屏广告15秒等待加载版
+    func showVpnConnectAdInTime(complete: @escaping(Bool, GADInterstitialAd?) -> Void) {
+        // 是否可显示
+        if canShowAd() == false {
+            complete(false, nil)
+            return
+        }
+        // 是否有缓存
+        if self.getCacheByType(type: .vpnConnect)!.count > 0 {
+            self.type = .vpnConnect
+            if let ad = self.getCacheByType(type: .vpnConnect)!.first!.first?.value.advertise as? GADInterstitialAd {
+                ad.fullScreenContentDelegate = self
+                complete(true, ad)
+            } else {
+                removeCachefirst(type: .vpnConnect)
+                self.loadInterstitialAd(type: .vpnConnect, complete)
+                self.type = nil
+                complete(false, nil)
+            }
+        } else {
+            self.hasCallBack = false //保证一次广告请求在规定时间内有且只有一起回调
+            DispatchQueue.main.asyncAfter(deadline: .now() + 14) {
+                if self.hasCallBack == false{
+                    HTLog.log("广告请求超时")
+                    self.hasCallBack = true
+                    complete(false, nil)
+                }
+            }
+            
+            self.loadInterstitialAd(type: .vpnConnect, complete)
+            self.type = nil
+            HTLog.log("没有缓存")
+        }
+    }
+    
     /// 原生广告加载
     func loadNativeAd(type: HTAdvertiseType, index: Int = 0) {
         // 是否可显示
@@ -372,10 +426,6 @@ extension HTAdverUtil {
         }
         switch type {
         case .transNative:
-            //            if transNativeCanShow == false {
-            //                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
-            //                return
-            //            }
             if transNativeCache.count > 0 {
                 return
             }
@@ -393,11 +443,8 @@ extension HTAdverUtil {
             transNativeLoader = GADAdLoader(adUnitID: transNativeItems[index].adId, rootViewController: rootViewController, adTypes: [.native], options: nil)
             transNativeLoader?.delegate = self
             transNativeLoader?.load(GADRequest())
+            
         case .languageNative:
-            //            if languageNativeCanShow == false {
-            //                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
-            //                return
-            //            }
             if languageNativeCache.count > 0 {
                 return
             }
@@ -415,6 +462,45 @@ extension HTAdverUtil {
             languageNativeLoader = GADAdLoader(adUnitID: languageNativeItems[index].adId, rootViewController: rootViewController, adTypes: [.native], options: nil)
             languageNativeLoader?.delegate = self
             languageNativeLoader?.load(GADRequest())
+            
+        case .vpnHome:
+            if vpnHomeNativeCache.count > 0 {
+                return
+            }
+            // 是否在加载中 及 检查数组是否越界
+            if vpnHomeNativeLoader?.isLoading == true {
+                HTLog.log("[AD] 广告加载中 type: \(type.rawValue)")
+                return
+            }
+            if index > vpnHomeNativeItems.count - 1 {
+                HTLog.log("[AD] 广告加载超过列表个数 type: \(type.rawValue)")
+                return
+            }
+            // 加载
+            vpnHomeNativeIndex = index
+            vpnHomeNativeLoader = GADAdLoader(adUnitID: vpnHomeNativeItems[index].adId, rootViewController: rootViewController, adTypes: [.native], options: nil)
+            vpnHomeNativeLoader?.delegate = self
+            vpnHomeNativeLoader?.load(GADRequest())
+            
+        case .rootHome:
+            if rootHomeNativeCache.count > 0 {
+                return
+            }
+            // 是否在加载中 及 检查数组是否越界
+            if rootHomeNativeLoader?.isLoading == true {
+                HTLog.log("[AD] 广告加载中 type: \(type.rawValue)")
+                return
+            }
+            if index > rootHomeNativeItems.count - 1 {
+                HTLog.log("[AD] 广告加载超过列表个数 type: \(type.rawValue)")
+                return
+            }
+            // 加载
+            rootHomeNativeIndex = index
+            rootHomeNativeLoader = GADAdLoader(adUnitID: rootHomeNativeItems[index].adId, rootViewController: rootViewController, adTypes: [.native], options: nil)
+            rootHomeNativeLoader?.delegate = self
+            rootHomeNativeLoader?.load(GADRequest())
+            
         default:
             return
         }
@@ -441,6 +527,19 @@ extension HTAdverUtil {
                 complete(false, nil)
                 return
             }
+        case .vpnHome:
+            if vpnHomeNativeCanShow == false {
+                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
+                complete(false, nil)
+                return
+            }
+            
+        case .rootHome:
+            if rootHomeNativeCanShow == false {
+                HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
+                complete(false, nil)
+                return
+            }
         default:
             complete(false, nil)
             return
@@ -451,7 +550,6 @@ extension HTAdverUtil {
             ad?.delegate = self
             complete(true, ad)
             self.startNativeTimer(type: type)
-            //            self.removeCachefirst(type: type)
         } else {
             self.loadNativeAd(type: type)
             complete(false, nil)
@@ -493,7 +591,8 @@ extension HTAdverUtil: GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
             if self.transNativeSuccessComplete != nil {
                 self.transNativeSuccessComplete!(nativeAd)
             }
-        } else if adLoader == languageNativeLoader {
+        }
+        else if adLoader == languageNativeLoader {
             HTLog.log("[AD]  广告加载成功 type: languageNative 优先级: \(self.languageNativeIndex + 1), unitID: \(self.languageNativeItems[self.languageNativeIndex].adId ?? "")")
             
             let item = self.languageNativeItems.filter({ $0.adId == adLoader.adUnitID }).first!
@@ -505,7 +604,34 @@ extension HTAdverUtil: GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
             
             /// 加入缓存
             self.addCacheByType(type: .languageNative, model: cache)
+        }
+        else if adLoader == vpnHomeNativeLoader {
+            HTLog.log("[AD]  广告加载成功 type: vpnHome 优先级: \(self.vpnHomeNativeIndex + 1), unitID: \(self.vpnHomeNativeItems[self.vpnHomeNativeIndex].adId ?? "")")
             
+            let item = self.vpnHomeNativeItems.filter({ $0.adId == adLoader.adUnitID }).first!
+            let cache = HTAdvertiseCache()
+            cache.adId = item.adId
+            cache.adSort = item.adSort
+            cache.adType = .languageNative
+            cache.advertise = nativeAd
+            
+            /// 加入缓存
+            self.addCacheByType(type: .vpnHome, model: cache)
+            NotificationCenter.default.post(name: Notification.Name.AD.vpnHomeNative, object: nil)
+        }
+        else if adLoader == rootHomeNativeLoader {
+            HTLog.log("[AD]  广告加载成功 type: rootHome 优先级: \(self.rootHomeNativeIndex + 1), unitID: \(self.rootHomeNativeItems[self.rootHomeNativeIndex].adId ?? "")")
+            
+            let item = self.rootHomeNativeItems.filter({ $0.adId == adLoader.adUnitID }).first!
+            let cache = HTAdvertiseCache()
+            cache.adId = item.adId
+            cache.adSort = item.adSort
+            cache.adType = .languageNative
+            cache.advertise = nativeAd
+            
+            /// 加入缓存
+            self.addCacheByType(type: .rootHome, model: cache)
+            NotificationCenter.default.post(name: Notification.Name.AD.rootHomeNative, object: nil)
         }
     }
     
@@ -513,9 +639,18 @@ extension HTAdverUtil: GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
         if adLoader == transNativeLoader {
             HTLog.log("[AD] 广告加载失败 type: transNative \(error.localizedDescription) 优先级: \(self.transNativeIndex + 1), unitID: \(self.transNativeItems[self.transNativeIndex].adId ?? "")")
             self.loadNativeAd(type: .transNative, index: transNativeIndex + 1)
-        } else if adLoader == languageNativeLoader {
+        }
+        else if adLoader == languageNativeLoader {
             HTLog.log("[AD] 广告加载失败 type: languageNative \(error.localizedDescription) 优先级: \(self.languageNativeIndex + 1), unitID: \(self.languageNativeItems[self.languageNativeIndex].adId ?? "")")
             self.loadNativeAd(type: .languageNative, index: languageNativeIndex + 1)
+        }
+        else if adLoader == vpnHomeNativeLoader {
+            HTLog.log("[AD] 广告加载失败 type: vpnHome \(error.localizedDescription) 优先级: \(self.vpnHomeNativeIndex + 1), unitID: \(self.vpnHomeNativeItems[self.vpnHomeNativeIndex].adId ?? "")")
+            self.loadNativeAd(type: .vpnHome, index: vpnHomeNativeIndex + 1)
+        }
+        else if adLoader == rootHomeNativeLoader {
+            HTLog.log("[AD] 广告加载失败 type: rootHome \(error.localizedDescription) 优先级: \(self.rootHomeNativeIndex + 1), unitID: \(self.rootHomeNativeItems[self.rootHomeNativeIndex].adId ?? "")")
+            self.loadNativeAd(type: .rootHome, index: rootHomeNativeIndex + 1)
         }
     }
 }
@@ -544,6 +679,9 @@ extension HTAdverUtil: GADFullScreenContentDelegate {
             if type == .loading, let app = UIApplication.shared.delegate as? AppDelegate {
                 app.getTrackAuth()
             }
+            if self.type == .vpnConnect {
+                self.type = nil
+            }
         }
     }
     
@@ -568,11 +706,13 @@ extension HTAdverUtil {
             transNativeCanShow = true
         case .languageNative:
             languageNativeCanShow = true
+        case .vpnHome:
+            vpnHomeNativeCanShow = true
+        case .rootHome:
+            rootHomeNativeCanShow = true
         default:
             break
         }
-        
-        //        removeCachefirst(type: type)
     }
     
     func stopNativeTimer(type: HTAdvertiseType) {
@@ -581,6 +721,10 @@ extension HTAdverUtil {
             transNativeCanShow = false
         case .languageNative:
             languageNativeCanShow = false
+        case .vpnHome:
+            vpnHomeNativeCanShow = false
+        case .rootHome:
+            rootHomeNativeCanShow = false
         default:
             break
         }
@@ -610,7 +754,13 @@ extension HTAdverUtil {
         backRootCache = backRootCache.filter({
             now - TimeInterval($0.first!.key) < 3000
         })
-        vpnCache = vpnCache.filter({
+        vpnConnectCache = vpnConnectCache.filter({
+            now - TimeInterval($0.first!.key) < 3000
+        })
+        vpnHomeNativeCache = vpnHomeNativeCache.filter({
+            now - TimeInterval($0.first!.key) < 3000
+        })
+        rootHomeNativeCache = rootHomeNativeCache.filter({
             now - TimeInterval($0.first!.key) < 3000
         })
     }
@@ -629,8 +779,12 @@ extension HTAdverUtil {
             return languageNativeCache
         case .backRoot:
             return backRootCache
-        case .vpn:
-            return vpnCache
+        case .vpnConnect:
+            return vpnConnectCache
+        case .vpnHome:
+            return vpnHomeNativeCache
+        case .rootHome:
+            return rootHomeNativeCache
         }
     }
     /// 加入缓存
@@ -666,9 +820,19 @@ extension HTAdverUtil {
             backRootCache.sort(by: {
                 $0.first!.value.adSort > $1.first!.value.adSort
             })
-        case .vpn:
-            vpnCache.append([Date().timeIntervalSince1970: model])
-            vpnCache.sort(by: {
+        case .vpnConnect:
+            vpnConnectCache.append([Date().timeIntervalSince1970: model])
+            vpnConnectCache.sort(by: {
+                $0.first!.value.adSort > $1.first!.value.adSort
+            })
+        case .vpnHome:
+            vpnHomeNativeCache.append([Date().timeIntervalSince1970: model])
+            vpnHomeNativeCache.sort(by: {
+                $0.first!.value.adSort > $1.first!.value.adSort
+            })
+        case .rootHome:
+            rootHomeNativeCache.append([Date().timeIntervalSince1970: model])
+            rootHomeNativeCache.sort(by: {
                 $0.first!.value.adSort > $1.first!.value.adSort
             })
         }
@@ -688,8 +852,12 @@ extension HTAdverUtil {
             languageNativeCache.removeAll()
         case .backRoot:
             backRootCache.removeAll()
-        case .vpn:
-            vpnCache.removeAll()
+        case .vpnConnect:
+            vpnConnectCache.removeAll()
+        case .vpnHome:
+            vpnHomeNativeCache.removeAll()
+        case .rootHome:
+            rootHomeNativeCache.removeAll()
         }
     }
     /// 清除全部缓存
@@ -700,7 +868,9 @@ extension HTAdverUtil {
         photoInterCache.removeAll()
         languageNativeCache.removeAll()
         backRootCache.removeAll()
-        vpnCache.removeAll()
+        vpnConnectCache.removeAll()
+        vpnHomeNativeCache.removeAll()
+        rootHomeNativeCache.removeAll()
         
         /// 加载状态及加载下标重置
         loadingAdIsLoding = false
@@ -717,8 +887,11 @@ extension HTAdverUtil {
         backRootIsLoding = false
         backRootIndex = 0
         
-        vpnIsLoding = false
-        vpnIndex = 0
+        vpnConnectIsLoding = false
+        vpnConnectIndex = 0
+        
+        vpnHomeNativeIndex = 0
+        rootHomeNativeIndex = 0
         
         languageNativeIndex = 0
     }

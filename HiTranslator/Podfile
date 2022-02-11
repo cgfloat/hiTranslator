@@ -1,6 +1,13 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
 
+def common_pods
+    pod 'ReachabilitySwift' # Network Info Tool
+    pod 'CocoaAsyncSocket'
+    pod 'CocoaLumberjack'
+end
+
+
 target 'HiTranslator' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
@@ -20,6 +27,11 @@ target 'HiTranslator' do
   pod 'Firebase/RemoteConfig'
   pod 'Google-Mobile-Ads-SDK'
   
+  common_pods
   # Pods for HiTranslator
-  
+end
+
+target 'HiTranslatorProxy' do
+  use_frameworks!
+  common_pods
 end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3860E87C1B338502987579B5 /* Pods_HiTranslatorProxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F51E972145492E946672D7 /* Pods_HiTranslatorProxy.framework */; };
 		4AA823E227953C5100261C68 /* HTAdverUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA823E127953C5100261C68 /* HTAdverUtil.swift */; };
 		4AA823E427953C6200261C68 /* HTRemoteUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA823E327953C6200261C68 /* HTRemoteUtil.swift */; };
 		4AA823E62795508A00261C68 /* hiTranslator-admob.json in Resources */ = {isa = PBXBuildFile; fileRef = 4AA823E52795508A00261C68 /* hiTranslator-admob.json */; };
@@ -18,8 +19,7 @@
 		4AAF4221278539A9004D4C8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF421F278539A9004D4C8D /* Main.storyboard */; };
 		4AAF4223278539AD004D4C8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF4222278539AD004D4C8D /* Assets.xcassets */; };
 		4AAF4226278539AD004D4C8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF4224278539AD004D4C8D /* LaunchScreen.storyboard */; };
-		4AAF4234278546A0004D4C8D /* HTRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF4233278546A0004D4C8D /* HTRootViewController.swift */; };
-		4AAF4236278546AA004D4C8D /* HTTransViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF4235278546AA004D4C8D /* HTTransViewController.swift */; };
+		4AAF4234278546A0004D4C8D /* HTTranslatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF4233278546A0004D4C8D /* HTTranslatorViewController.swift */; };
 		4AAF4238278546E8004D4C8D /* HTRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF4237278546E8004D4C8D /* HTRecognitionViewController.swift */; };
 		4AAF423A278546FC004D4C8D /* HTLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF4239278546FC004D4C8D /* HTLanguageViewController.swift */; };
 		4AAF423C2785470A004D4C8D /* HTSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF423B2785470A004D4C8D /* HTSetViewController.swift */; };
@@ -50,9 +50,64 @@
 		4AE2074A2786C42C00DA6A25 /* HTWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE207492786C42C00DA6A25 /* HTWebview.swift */; };
 		4AE2074C27870BB100DA6A25 /* HTOcrTransModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2074B27870BB100DA6A25 /* HTOcrTransModel.swift */; };
 		A97E0DF06BD763754510D39B /* Pods_HiTranslator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 654FA452986D8E7DEE8A16B8 /* Pods_HiTranslator.framework */; };
+		AA717EA527B206CE001E1991 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA717EA427B206CE001E1991 /* NetworkExtension.framework */; };
+		AA717EA827B206CE001E1991 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA717EA727B206CE001E1991 /* PacketTunnelProvider.swift */; };
+		AA717EAD27B206CE001E1991 /* HiTranslatorProxy.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA717EA327B206CE001E1991 /* HiTranslatorProxy.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA717EB327B2083E001E1991 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA717EA427B206CE001E1991 /* NetworkExtension.framework */; };
+		AA717EB727B20ABD001E1991 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA717EB527B20ABC001E1991 /* Shadowsocks_iOS.framework */; };
+		AA717EB927B20B12001E1991 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA717EB627B20ABC001E1991 /* PacketProcessor_iOS.framework */; platformFilter = ios; };
+		AA717EBA27B20B12001E1991 /* PacketProcessor_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA717EB627B20ABC001E1991 /* PacketProcessor_iOS.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA717EBC27B20B33001E1991 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA717EB627B20ABC001E1991 /* PacketProcessor_iOS.framework */; platformFilter = ios; };
+		AA717EBE27B20B33001E1991 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA717EB527B20ABC001E1991 /* Shadowsocks_iOS.framework */; };
+		AA717EC727B20B8E001E1991 /* Shadowsocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AA717EC327B20B8E001E1991 /* Shadowsocks.m */; };
+		AA717EC827B20B8E001E1991 /* ShadowsocksConnectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = AA717EC627B20B8E001E1991 /* ShadowsocksConnectivity.m */; };
+		AA717ECF27B20C31001E1991 /* SMPing.m in Sources */ = {isa = PBXBuildFile; fileRef = AA717ECB27B20C31001E1991 /* SMPing.m */; };
+		AA717ED027B20C31001E1991 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = AA717ECE27B20C31001E1991 /* SimplePing.m */; };
+		AA717ED327B20C4C001E1991 /* HTVpnServerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA717ED127B20C4C001E1991 /* HTVpnServerModel.swift */; };
+		AA717ED427B20C4C001E1991 /* HTVpnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA717ED227B20C4C001E1991 /* HTVpnManager.swift */; };
+		AA717ED627B23A5D001E1991 /* HTRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA717ED527B23A5D001E1991 /* HTRootViewController.swift */; };
+		AA717EDA27B23AFC001E1991 /* HTVpnHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA717ED927B23AFC001E1991 /* HTVpnHomeViewController.swift */; };
+		AA717EDC27B25FF3001E1991 /* HTVpnConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA717EDB27B25FF3001E1991 /* HTVpnConnectionView.swift */; };
+		AA717EDE27B2600D001E1991 /* HTVpnConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA717EDD27B2600D001E1991 /* HTVpnConnectionView.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AA717EAB27B206CE001E1991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AAF420E278539A9004D4C8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA717EA227B206CE001E1991;
+			remoteInfo = HiTranslatorProxy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA717EAE27B206CE001E1991 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA717EAD27B206CE001E1991 /* HiTranslatorProxy.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA717EBB27B20B12001E1991 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AA717EBA27B20B12001E1991 /* PacketProcessor_iOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		02F51E972145492E946672D7 /* Pods_HiTranslatorProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HiTranslatorProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA823E127953C5100261C68 /* HTAdverUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTAdverUtil.swift; sourceTree = "<group>"; };
 		4AA823E327953C6200261C68 /* HTRemoteUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTRemoteUtil.swift; sourceTree = "<group>"; };
 		4AA823E52795508A00261C68 /* hiTranslator-admob.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "hiTranslator-admob.json"; sourceTree = "<group>"; };
@@ -66,8 +121,7 @@
 		4AAF4222278539AD004D4C8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AAF4225278539AD004D4C8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4AAF4227278539AD004D4C8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4AAF4233278546A0004D4C8D /* HTRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTRootViewController.swift; sourceTree = "<group>"; };
-		4AAF4235278546AA004D4C8D /* HTTransViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTransViewController.swift; sourceTree = "<group>"; };
+		4AAF4233278546A0004D4C8D /* HTTranslatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTranslatorViewController.swift; sourceTree = "<group>"; };
 		4AAF4237278546E8004D4C8D /* HTRecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTRecognitionViewController.swift; sourceTree = "<group>"; };
 		4AAF4239278546FC004D4C8D /* HTLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTLanguageViewController.swift; sourceTree = "<group>"; };
 		4AAF423B2785470A004D4C8D /* HTSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTSetViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +154,32 @@
 		654FA452986D8E7DEE8A16B8 /* Pods_HiTranslator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HiTranslator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCEF4B3C767B44589B9DBC9 /* Pods-HiTranslator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiTranslator.release.xcconfig"; path = "Target Support Files/Pods-HiTranslator/Pods-HiTranslator.release.xcconfig"; sourceTree = "<group>"; };
 		982CB7DBF3E22C7EB264D337 /* Pods-HiTranslator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiTranslator.debug.xcconfig"; path = "Target Support Files/Pods-HiTranslator/Pods-HiTranslator.debug.xcconfig"; sourceTree = "<group>"; };
+		AA717EA327B206CE001E1991 /* HiTranslatorProxy.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HiTranslatorProxy.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA717EA427B206CE001E1991 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		AA717EA727B206CE001E1991 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
+		AA717EA927B206CE001E1991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA717EAA27B206CE001E1991 /* HiTranslatorProxy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HiTranslatorProxy.entitlements; sourceTree = "<group>"; };
+		AA717EB227B206E8001E1991 /* HiTranslator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HiTranslator.entitlements; sourceTree = "<group>"; };
+		AA717EB527B20ABC001E1991 /* Shadowsocks_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shadowsocks_iOS.framework; sourceTree = "<group>"; };
+		AA717EB627B20ABC001E1991 /* PacketProcessor_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PacketProcessor_iOS.framework; sourceTree = "<group>"; };
+		AA717EC227B20B8D001E1991 /* HiTranslatorProxy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HiTranslatorProxy-Bridging-Header.h"; sourceTree = "<group>"; };
+		AA717EC327B20B8E001E1991 /* Shadowsocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shadowsocks.m; sourceTree = "<group>"; };
+		AA717EC427B20B8E001E1991 /* Shadowsocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shadowsocks.h; sourceTree = "<group>"; };
+		AA717EC527B20B8E001E1991 /* ShadowsocksConnectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowsocksConnectivity.h; sourceTree = "<group>"; };
+		AA717EC627B20B8E001E1991 /* ShadowsocksConnectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowsocksConnectivity.m; sourceTree = "<group>"; };
+		AA717ECA27B20C31001E1991 /* HiTranslator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HiTranslator-Bridging-Header.h"; sourceTree = "<group>"; };
+		AA717ECB27B20C31001E1991 /* SMPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPing.m; sourceTree = "<group>"; };
+		AA717ECC27B20C31001E1991 /* SMPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPing.h; sourceTree = "<group>"; };
+		AA717ECD27B20C31001E1991 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		AA717ECE27B20C31001E1991 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		AA717ED127B20C4C001E1991 /* HTVpnServerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTVpnServerModel.swift; sourceTree = "<group>"; };
+		AA717ED227B20C4C001E1991 /* HTVpnManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTVpnManager.swift; sourceTree = "<group>"; };
+		AA717ED527B23A5D001E1991 /* HTRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTRootViewController.swift; sourceTree = "<group>"; };
+		AA717ED927B23AFC001E1991 /* HTVpnHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTVpnHomeViewController.swift; sourceTree = "<group>"; };
+		AA717EDB27B25FF3001E1991 /* HTVpnConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTVpnConnectionView.swift; sourceTree = "<group>"; };
+		AA717EDD27B2600D001E1991 /* HTVpnConnectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTVpnConnectionView.xib; sourceTree = "<group>"; };
+		C75260399A1D77E0994A8F34 /* Pods-HiTranslatorProxy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiTranslatorProxy.release.xcconfig"; path = "Target Support Files/Pods-HiTranslatorProxy/Pods-HiTranslatorProxy.release.xcconfig"; sourceTree = "<group>"; };
+		DD8DEA434333C48002B5F253 /* Pods-HiTranslatorProxy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiTranslatorProxy.debug.xcconfig"; path = "Target Support Files/Pods-HiTranslatorProxy/Pods-HiTranslatorProxy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +187,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA717EB727B20ABD001E1991 /* Shadowsocks_iOS.framework in Frameworks */,
 				A97E0DF06BD763754510D39B /* Pods_HiTranslator.framework in Frameworks */,
+				AA717EB327B2083E001E1991 /* NetworkExtension.framework in Frameworks */,
+				AA717EB927B20B12001E1991 /* PacketProcessor_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA717EA027B206CE001E1991 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA717EBE27B20B33001E1991 /* Shadowsocks_iOS.framework in Frameworks */,
+				AA717EA527B206CE001E1991 /* NetworkExtension.framework in Frameworks */,
+				3860E87C1B338502987579B5 /* Pods_HiTranslatorProxy.framework in Frameworks */,
+				AA717EBC27B20B33001E1991 /* PacketProcessor_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				4AAF4218278539A9004D4C8D /* HiTranslator */,
+				AA717EA627B206CE001E1991 /* HiTranslatorProxy */,
+				AA717EB427B20A95001E1991 /* Library */,
 				4AAF4217278539A9004D4C8D /* Products */,
 				58045B8694C9804DD50537D5 /* Pods */,
 				BA6B045FF0F538B159129C95 /* Frameworks */,
@@ -128,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				4AAF4216278539A9004D4C8D /* HiTranslator.app */,
+				AA717EA327B206CE001E1991 /* HiTranslatorProxy.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +232,7 @@
 		4AAF4218278539A9004D4C8D /* HiTranslator */ = {
 			isa = PBXGroup;
 			children = (
+				AA717EB227B206E8001E1991 /* HiTranslator.entitlements */,
 				4AB0B0A22788095900539A97 /* GoogleService-Info.plist */,
 				4AAF422D278543D8004D4C8D /* Classes */,
 				4AAF4219278539A9004D4C8D /* AppDelegate.swift */,
@@ -150,20 +248,13 @@
 		4AAF422D278543D8004D4C8D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4AAF422E278543D8004D4C8D /* Resources */,
+				AA717EC927B20C1D001E1991 /* VpnManager */,
 				4AAF422F278543D8004D4C8D /* Utils */,
 				4AAF4230278543D8004D4C8D /* Models */,
 				4AAF4231278543D8004D4C8D /* Controllers */,
 				4AAF4232278543D8004D4C8D /* Views */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		4AAF422E278543D8004D4C8D /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		4AAF422F278543D8004D4C8D /* Utils */ = {
@@ -192,10 +283,9 @@
 		4AAF4231278543D8004D4C8D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4AAF4233278546A0004D4C8D /* HTRootViewController.swift */,
-				4AAF4235278546AA004D4C8D /* HTTransViewController.swift */,
-				4AAF4237278546E8004D4C8D /* HTRecognitionViewController.swift */,
-				4AAF4239278546FC004D4C8D /* HTLanguageViewController.swift */,
+				AA717ED527B23A5D001E1991 /* HTRootViewController.swift */,
+				AA717ED727B23A65001E1991 /* HTVpnController */,
+				AA717ED827B23A7B001E1991 /* HTTranslatorController */,
 				4AAF423B2785470A004D4C8D /* HTSetViewController.swift */,
 				4AAF423D2785471F004D4C8D /* HTLabelViewController.swift */,
 			);
@@ -203,6 +293,111 @@
 			sourceTree = "<group>";
 		};
 		4AAF4232278543D8004D4C8D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA717EE127B26A06001E1991 /* HTTranslatorView */,
+				AA717EE027B26A04001E1991 /* HTVpnView */,
+				AA717EDF27B26A02001E1991 /* HTAdView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		58045B8694C9804DD50537D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				982CB7DBF3E22C7EB264D337 /* Pods-HiTranslator.debug.xcconfig */,
+				8CCEF4B3C767B44589B9DBC9 /* Pods-HiTranslator.release.xcconfig */,
+				DD8DEA434333C48002B5F253 /* Pods-HiTranslatorProxy.debug.xcconfig */,
+				C75260399A1D77E0994A8F34 /* Pods-HiTranslatorProxy.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AA717EA627B206CE001E1991 /* HiTranslatorProxy */ = {
+			isa = PBXGroup;
+			children = (
+				AA717EC127B20B7D001E1991 /* Shadowsocks */,
+				AA717EA727B206CE001E1991 /* PacketTunnelProvider.swift */,
+				AA717EA927B206CE001E1991 /* Info.plist */,
+				AA717EAA27B206CE001E1991 /* HiTranslatorProxy.entitlements */,
+			);
+			path = HiTranslatorProxy;
+			sourceTree = "<group>";
+		};
+		AA717EB427B20A95001E1991 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				AA717EB627B20ABC001E1991 /* PacketProcessor_iOS.framework */,
+				AA717EB527B20ABC001E1991 /* Shadowsocks_iOS.framework */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		AA717EC127B20B7D001E1991 /* Shadowsocks */ = {
+			isa = PBXGroup;
+			children = (
+				AA717EC427B20B8E001E1991 /* Shadowsocks.h */,
+				AA717EC327B20B8E001E1991 /* Shadowsocks.m */,
+				AA717EC527B20B8E001E1991 /* ShadowsocksConnectivity.h */,
+				AA717EC627B20B8E001E1991 /* ShadowsocksConnectivity.m */,
+				AA717EC227B20B8D001E1991 /* HiTranslatorProxy-Bridging-Header.h */,
+			);
+			path = Shadowsocks;
+			sourceTree = "<group>";
+		};
+		AA717EC927B20C1D001E1991 /* VpnManager */ = {
+			isa = PBXGroup;
+			children = (
+				AA717ED227B20C4C001E1991 /* HTVpnManager.swift */,
+				AA717ED127B20C4C001E1991 /* HTVpnServerModel.swift */,
+				AA717ECD27B20C31001E1991 /* SimplePing.h */,
+				AA717ECE27B20C31001E1991 /* SimplePing.m */,
+				AA717ECC27B20C31001E1991 /* SMPing.h */,
+				AA717ECB27B20C31001E1991 /* SMPing.m */,
+				AA717ECA27B20C31001E1991 /* HiTranslator-Bridging-Header.h */,
+			);
+			path = VpnManager;
+			sourceTree = "<group>";
+		};
+		AA717ED727B23A65001E1991 /* HTVpnController */ = {
+			isa = PBXGroup;
+			children = (
+				AA717ED927B23AFC001E1991 /* HTVpnHomeViewController.swift */,
+			);
+			path = HTVpnController;
+			sourceTree = "<group>";
+		};
+		AA717ED827B23A7B001E1991 /* HTTranslatorController */ = {
+			isa = PBXGroup;
+			children = (
+				4AAF4233278546A0004D4C8D /* HTTranslatorViewController.swift */,
+				4AAF4237278546E8004D4C8D /* HTRecognitionViewController.swift */,
+				4AAF4239278546FC004D4C8D /* HTLanguageViewController.swift */,
+			);
+			path = HTTranslatorController;
+			sourceTree = "<group>";
+		};
+		AA717EDF27B26A02001E1991 /* HTAdView */ = {
+			isa = PBXGroup;
+			children = (
+				4AAB487E279952F60038294F /* HTNativeADView.swift */,
+				4AAB4880279953040038294F /* HTNativeADView.xib */,
+				4AD21B50279A5F6100AFD74A /* HTNativePlaceHolderView.swift */,
+				4AD21B52279A5F6E00AFD74A /* HTNativePlaceHolderView.xib */,
+			);
+			path = HTAdView;
+			sourceTree = "<group>";
+		};
+		AA717EE027B26A04001E1991 /* HTVpnView */ = {
+			isa = PBXGroup;
+			children = (
+				AA717EDB27B25FF3001E1991 /* HTVpnConnectionView.swift */,
+				AA717EDD27B2600D001E1991 /* HTVpnConnectionView.xib */,
+			);
+			path = HTVpnView;
+			sourceTree = "<group>";
+		};
+		AA717EE127B26A06001E1991 /* HTTranslatorView */ = {
 			isa = PBXGroup;
 			children = (
 				4AAF424727858AAC004D4C8D /* HTTopView.swift */,
@@ -222,27 +417,16 @@
 				4AAF426327858CFC004D4C8D /* HTSetTableViewCell.swift */,
 				4AAF426427858CFC004D4C8D /* HTSetTableViewCell.xib */,
 				4AE207492786C42C00DA6A25 /* HTWebview.swift */,
-				4AAB487E279952F60038294F /* HTNativeADView.swift */,
-				4AAB4880279953040038294F /* HTNativeADView.xib */,
-				4AD21B50279A5F6100AFD74A /* HTNativePlaceHolderView.swift */,
-				4AD21B52279A5F6E00AFD74A /* HTNativePlaceHolderView.xib */,
 			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		58045B8694C9804DD50537D5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				982CB7DBF3E22C7EB264D337 /* Pods-HiTranslator.debug.xcconfig */,
-				8CCEF4B3C767B44589B9DBC9 /* Pods-HiTranslator.release.xcconfig */,
-			);
-			path = Pods;
+			path = HTTranslatorView;
 			sourceTree = "<group>";
 		};
 		BA6B045FF0F538B159129C95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				654FA452986D8E7DEE8A16B8 /* Pods_HiTranslator.framework */,
+				AA717EA427B206CE001E1991 /* NetworkExtension.framework */,
+				02F51E972145492E946672D7 /* Pods_HiTranslatorProxy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,15 +445,36 @@
 				A0B8D4A8FC6FE2A07D4FCF95 /* [CP] Embed Pods Frameworks */,
 				6FBB820E8A48B9AF9A297328 /* [CP] Copy Pods Resources */,
 				4AB0B0A427880E6900539A97 /* ShellScript */,
+				AA717EAE27B206CE001E1991 /* Embed App Extensions */,
+				AA717EBB27B20B12001E1991 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AA717EAC27B206CE001E1991 /* PBXTargetDependency */,
 			);
 			name = HiTranslator;
 			productName = HiTranslator;
 			productReference = 4AAF4216278539A9004D4C8D /* HiTranslator.app */;
 			productType = "com.apple.product-type.application";
+		};
+		AA717EA227B206CE001E1991 /* HiTranslatorProxy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA717EB127B206CE001E1991 /* Build configuration list for PBXNativeTarget "HiTranslatorProxy" */;
+			buildPhases = (
+				E2CEAD16B85E884AF3E1FF38 /* [CP] Check Pods Manifest.lock */,
+				AA717E9F27B206CE001E1991 /* Sources */,
+				AA717EA027B206CE001E1991 /* Frameworks */,
+				AA717EA127B206CE001E1991 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HiTranslatorProxy;
+			productName = HiTranslatorProxy;
+			productReference = AA717EA327B206CE001E1991 /* HiTranslatorProxy.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -279,11 +484,16 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = HT;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					4AAF4215278539A9004D4C8D = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1320;
+					};
+					AA717EA227B206CE001E1991 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -301,6 +511,7 @@
 			projectRoot = "";
 			targets = (
 				4AAF4215278539A9004D4C8D /* HiTranslator */,
+				AA717EA227B206CE001E1991 /* HiTranslatorProxy */,
 			);
 		};
 /* End PBXProject section */
@@ -318,6 +529,7 @@
 				4AAB4881279953040038294F /* HTNativeADView.xib in Resources */,
 				4AAF425E27858CA6004D4C8D /* HTResultView.xib in Resources */,
 				4AB0B0A32788095900539A97 /* GoogleService-Info.plist in Resources */,
+				AA717EDE27B2600D001E1991 /* HTVpnConnectionView.xib in Resources */,
 				4AAF424E27858B14004D4C8D /* HTPhotoTopView.xib in Resources */,
 				4AAF4223278539AD004D4C8D /* Assets.xcassets in Resources */,
 				4AA823E62795508A00261C68 /* hiTranslator-admob.json in Resources */,
@@ -326,6 +538,13 @@
 				4AAF426227858CE6004D4C8D /* HTLanguageTableViewCell.xib in Resources */,
 				4AAF4221278539A9004D4C8D /* Main.storyboard in Resources */,
 				4AAF425A27858C69004D4C8D /* HTInputView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA717EA127B206CE001E1991 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +626,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HiTranslator/Pods-HiTranslator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E2CEAD16B85E884AF3E1FF38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HiTranslatorProxy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -414,6 +655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA717ECF27B20C31001E1991 /* SMPing.m in Sources */,
 				4AAF423A278546FC004D4C8D /* HTLanguageViewController.swift in Sources */,
 				4AE2074C27870BB100DA6A25 /* HTOcrTransModel.swift in Sources */,
 				4AAF4246278580AC004D4C8D /* HTLog.swift in Sources */,
@@ -423,27 +665,50 @@
 				4AAF425427858B7F004D4C8D /* HTLanuchView.swift in Sources */,
 				4AAF424C27858B09004D4C8D /* HTPhotoTopView.swift in Sources */,
 				4AAB487F279952F60038294F /* HTNativeADView.swift in Sources */,
+				AA717ED327B20C4C001E1991 /* HTVpnServerModel.swift in Sources */,
 				4AAF4240278577C4004D4C8D /* HTRootUtil.swift in Sources */,
 				4AAF421E278539A9004D4C8D /* ViewController.swift in Sources */,
 				4AAF425027858B59004D4C8D /* HTTranslatingView.swift in Sources */,
+				AA717ED627B23A5D001E1991 /* HTRootViewController.swift in Sources */,
+				AA717EDC27B25FF3001E1991 /* HTVpnConnectionView.swift in Sources */,
 				4AAF4238278546E8004D4C8D /* HTRecognitionViewController.swift in Sources */,
+				AA717EDA27B23AFC001E1991 /* HTVpnHomeViewController.swift in Sources */,
 				4AD21B51279A5F6100AFD74A /* HTNativePlaceHolderView.swift in Sources */,
 				4AA823E227953C5100261C68 /* HTAdverUtil.swift in Sources */,
 				4AAF426527858CFC004D4C8D /* HTSetTableViewCell.swift in Sources */,
-				4AAF4236278546AA004D4C8D /* HTTransViewController.swift in Sources */,
 				4AAF423C2785470A004D4C8D /* HTSetViewController.swift in Sources */,
+				AA717ED027B20C31001E1991 /* SimplePing.m in Sources */,
 				4AAF425C27858C9C004D4C8D /* HTResultView.swift in Sources */,
 				4AE207482786C0AF00DA6A25 /* HTTransUtil.swift in Sources */,
 				4AAF424827858AAC004D4C8D /* HTTopView.swift in Sources */,
+				AA717ED427B20C4C001E1991 /* HTVpnManager.swift in Sources */,
 				4AA823E427953C6200261C68 /* HTRemoteUtil.swift in Sources */,
 				4AAF421A278539A9004D4C8D /* AppDelegate.swift in Sources */,
-				4AAF4234278546A0004D4C8D /* HTRootViewController.swift in Sources */,
+				4AAF4234278546A0004D4C8D /* HTTranslatorViewController.swift in Sources */,
 				4AAF424227858027004D4C8D /* Extension-HT.swift in Sources */,
 				4AAF426127858CE6004D4C8D /* HTLanguageTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA717E9F27B206CE001E1991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA717EA827B206CE001E1991 /* PacketTunnelProvider.swift in Sources */,
+				AA717EC727B20B8E001E1991 /* Shadowsocks.m in Sources */,
+				AA717EC827B20B8E001E1991 /* ShadowsocksConnectivity.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA717EAC27B206CE001E1991 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA717EA227B206CE001E1991 /* HiTranslatorProxy */;
+			targetProxy = AA717EAB27B206CE001E1991 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4AAF421F278539A9004D4C8D /* Main.storyboard */ = {
@@ -585,13 +850,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 982CB7DBF3E22C7EB264D337 /* Pods-HiTranslator.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HiTranslator/HiTranslator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 7F7V4MN33A;
+				DEVELOPMENT_TEAM = S35CLK2AM2;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HiTranslator/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Hi Translator";
@@ -608,10 +880,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cgfloat.HiTranslator;
+				MARKETING_VERSION = 1.3.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cgfloattest.HiTranslator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "HiTranslator/Classes/VpnManager/HiTranslator-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -621,12 +895,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8CCEF4B3C767B44589B9DBC9 /* Pods-HiTranslator.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HiTranslator/HiTranslator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7F7V4MN33A;
+				DEVELOPMENT_TEAM = S35CLK2AM2;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HiTranslator/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Hi Translator";
@@ -643,10 +924,82 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cgfloat.HiTranslator;
+				MARKETING_VERSION = 1.3.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cgfloattest.HiTranslator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "HiTranslator/Classes/VpnManager/HiTranslator-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		AA717EAF27B206CE001E1991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD8DEA434333C48002B5F253 /* Pods-HiTranslatorProxy.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HiTranslatorProxy/HiTranslatorProxy.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K23XRGB579;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HiTranslatorProxy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HiTranslatorProxy;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cgfloattest1.HiTranslator.HiTranslatorProxy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "HiTranslatorProxy/Shadowsocks/HiTranslatorProxy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AA717EB027B206CE001E1991 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C75260399A1D77E0994A8F34 /* Pods-HiTranslatorProxy.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HiTranslatorProxy/HiTranslatorProxy.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K23XRGB579;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HiTranslatorProxy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HiTranslatorProxy;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cgfloattest1.HiTranslator.HiTranslatorProxy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "HiTranslatorProxy/Shadowsocks/HiTranslatorProxy-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -662,7 +1015,7 @@
 				4AAF4229278539AD004D4C8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		4AAF422A278539AD004D4C8D /* Build configuration list for PBXNativeTarget "HiTranslator" */ = {
 			isa = XCConfigurationList;
@@ -671,7 +1024,16 @@
 				4AAF422C278539AD004D4C8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		AA717EB127B206CE001E1991 /* Build configuration list for PBXNativeTarget "HiTranslatorProxy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA717EAF27B206CE001E1991 /* Debug */,
+				AA717EB027B206CE001E1991 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

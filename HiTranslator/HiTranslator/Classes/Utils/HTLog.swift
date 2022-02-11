@@ -119,4 +119,60 @@ class HTLog: NSObject {
         HTLog.log("[LOG] log: all_use count: \(type) 使用翻译功能")
         Analytics.logEvent("all_use", parameters: ["count": type])
     }
+    
+    class func root_1page(){
+        HTLog.log("[LOG] log: 1page 首页展示")
+        Analytics.logEvent("1page", parameters: nil)
+    }
+    
+    class func root_1page_ba(){
+        HTLog.log("[LOG] log: 1page_ba 返回首页")
+        Analytics.logEvent("1page_ba", parameters: nil)
+    }
+    
+    class func root_1page_1(){
+        HTLog.log("[LOG] log: 1page_1 首页点击翻译")
+        Analytics.logEvent("1page_1", parameters: nil)
+    }
+    
+    class func root_1page_2(){
+        HTLog.log("[LOG] log: 1page_2 首页点击VPN")
+        Analytics.logEvent("1page_2", parameters: nil)
+    }
+    
+    class func vpn_vpage(){
+        HTLog.log("[LOG] log: vpage VPN首页展示")
+        Analytics.logEvent("vpage", parameters: nil)
+    }
+    
+    class func vpn_vuse1(){
+        HTLog.log("[LOG] log: vuse1 触发连接")
+        Analytics.logEvent("vuse1", parameters: nil)
+    }
+    
+    class func vpn_vuse2(){
+        HTLog.log("[LOG] log: vuse2 触发连接，测速成功")
+        Analytics.logEvent("vuse2", parameters: nil)
+    }
+    
+    class func vpn_vuse3(country: String) {
+        HTLog.log("[LOG] log: vuse3 smart: \(country) 连接成功")
+        Analytics.logEvent("vuse3", parameters: ["smart": country])
+    }
+    
+    class func vpn_vdisuse(){
+        HTLog.log("[LOG] log: vdisuse 断开连接")
+        Analytics.logEvent("vdisuse", parameters: nil)
+    }
+    
+    class func vpn_vpermis(){
+        HTLog.log("[LOG] log: vpermis 弹出VPN权限")
+        Analytics.logEvent("vpermis", parameters: nil)
+    }
+    
+    class func vpn_vpermis1(){
+        HTLog.log("[LOG] log: vpermis1 同意VPN权限")
+        Analytics.logEvent("vpermis1", parameters: nil)
+    }
+    
 }

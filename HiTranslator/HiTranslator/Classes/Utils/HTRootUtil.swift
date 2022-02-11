@@ -11,6 +11,8 @@ import AVFoundation
 import CoreVideo
 import MLKit
 
+let HTAppdelegate = UIApplication.shared.delegate as! AppDelegate
+
 let status_height: CGFloat = UIApplication.shared.statusBarFrame.size.height
 let navigation_height: CGFloat = 44 + status_height
 let is_hair: Bool = status_height > 20
@@ -50,6 +52,8 @@ class RemoteString {
     static let config = "config"
     static let overdue = "overdue"
 }
+//VPN key
+let keyVpnPermis1 = "keyVpnPermis1"
 
 // MARK: - 图片识别区域获取
 class HTRootUtil: NSObject {

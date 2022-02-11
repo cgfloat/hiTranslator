@@ -22,7 +22,7 @@
 	<key>FacebookDisplayName</key>
 	<string>Hi Translator</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-3170055959558002~7084651087</string>
+	<string>ca-app-pub-3940256099942544~1458002511</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

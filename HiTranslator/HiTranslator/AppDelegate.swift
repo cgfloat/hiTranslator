@@ -13,6 +13,7 @@ import AppTrackingTransparency
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
 
     var window: UIWindow?
     
@@ -33,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Settings.shared.isCodelessDebugLogEnabled = true
         
         HTTransUtil.shared.config()
-        HTRemoteUtil.shared.defaultConfig()
+//        HTRemoteUtil.shared.defaultConfig()
         
         HTLog.turn_c()
         
@@ -52,12 +53,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        isEnterBackground = true
         UserDefaults.standard.set(Int(Date().timeIntervalSince1970), forKey: RemoteString.overdue)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
+        isEnterBackground = false
+        if isVPNSetting { // 忽略获取权限跳出的APP
+            isVPNSetting = false
+            return
+        }
+    
         loadLaunch()
         HTLog.turn_h()
+        if hasEnterBackGround{
+            HTLog.vpn_vpage()
+            hasEnterBackGround = false
+        }
         
         /// 超过200ms关闭广告
         if UserDefaults.standard.value(forKey: RemoteString.overdue) != nil {
@@ -66,13 +78,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             let now = Int(Date().timeIntervalSince1970)
             if (now * 1000) - (clickTime * 1000) > 200 {
-                
                 NotificationCenter.default.post(name: NSNotification.Name.Remote.config, object: nil)
-                
             }
         }
         
-        if let controller = UIApplication.topViewController(), controller.isKind(of: HTRootViewController.self) {
+        if let controller = UIApplication.topViewController(), controller.isKind(of: HTTranslatorViewController.self) {
             controller.view.endEditing(true)
             HTLog.textpage()
         }
@@ -106,7 +116,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            
         }
         
         DispatchQueue.main.async {
@@ -212,6 +221,5 @@ extension UIApplication {
             return topViewController(controller: presented)
         }
         return controller
-        
     }
 }
