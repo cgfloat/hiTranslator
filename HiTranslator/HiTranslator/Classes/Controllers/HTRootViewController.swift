@@ -117,7 +117,7 @@ class HTRootViewController:UIViewController{
     }
     
     @objc func vpnBtnClick(){
-        let vpnVC = HTVpnHomeViewController()
+        let vpnVC = HTvHomeViewController()
         self.navigationController?.pushViewController(vpnVC, animated: true)
         HTLog.root_1page_2()
     }

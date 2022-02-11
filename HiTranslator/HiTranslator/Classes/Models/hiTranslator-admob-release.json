@@ -73,7 +73,7 @@
             "adType": "interstitial"
         }
     ],
-    "vpnConnect": [
+    "vConnect": [
         {
             "adId": "ca-app-pub-3170055959558002/6000240485",
             "adSort": 2,
@@ -85,7 +85,7 @@
             "adType": "interstitial"
         }
     ],
-    "vpnHome": [
+    "vHome": [
         {
             "adId": "ca-app-pub-3170055959558002/5535182537",
             "adSort": 2,
@@ -110,7 +110,7 @@
         }
     ],
     
-    "vpnServers":[
+    "vServers":[
         {
             "countryName": "New York",
             "countryIcon": "US",

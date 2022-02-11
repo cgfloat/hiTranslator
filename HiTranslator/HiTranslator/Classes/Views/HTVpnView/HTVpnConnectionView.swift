@@ -109,7 +109,7 @@ extension HTVpnConnectionView {
             switch vpnS {
             case .connected:
                 self.vpnState = .connected
-                HTAdverUtil.shared.loadInterstitialAd(type: .vpnConnect)
+                HTAdverUtil.shared.loadInterstitialAd(type: .vConnect)
             case .disConnected:
                 self.vpnState = .disConnected
             case .error:
@@ -170,7 +170,7 @@ extension HTVpnConnectionView {
             HTLog.vpn_vdisuse()
             if !isEnterBackground {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    HTAdverUtil.shared.showInterstitialAd(type: .vpnConnect) {[weak self] result, ad in
+                    HTAdverUtil.shared.showInterstitialAd(type: .vConnect) {[weak self] result, ad in
                         if result, let ad = ad {
                             self?.showConnectADBlock?(ad)
                         }

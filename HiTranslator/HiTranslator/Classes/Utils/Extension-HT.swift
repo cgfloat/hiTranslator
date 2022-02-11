@@ -40,6 +40,6 @@ extension Notification.Name {
     public struct AD {
         public static let transNative = Notification.Name(rawValue: "transNative")
         public static let rootHomeNative = Notification.Name(rawValue: "rootHomeNative")
-        public static let vpnHomeNative = Notification.Name(rawValue: "vpnHomeNative")
+        public static let vHomeNative = Notification.Name(rawValue: "vHomeNative")
     }
 }

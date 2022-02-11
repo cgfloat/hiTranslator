@@ -15,9 +15,9 @@ enum HTAdvertiseType: String, Codable {
     case photoInter = "photoInter"
     case languageNative = "languageNative"
     case backRoot = "backRoot"
-    case vpnHome = "vpnHome"
+    case vHome = "vHome"
     case rootHome = "rootHome"
-    case vpnConnect = "vpnConnect"
+    case vConnect = "vConnect"
 }
 
 struct HTAdvertiseItem: Codable {
@@ -35,12 +35,12 @@ struct HTAdvertiseModel: Codable {
     var languageNative: [HTAdvertiseItem]!
     var backRoot: [HTAdvertiseItem]!
     var rootHome: [HTAdvertiseItem]!
-    var vpnHome: [HTAdvertiseItem]!
-    var vpnConnect: [HTAdvertiseItem]!
+    var vHome: [HTAdvertiseItem]!
+    var vConnect: [HTAdvertiseItem]!
     var totalShowCount: Int!
     var totalClickCount: Int!
     
-    var vpnServers: [HTServerModel]!
+    var vServers: [HTServerModel]!
 }
 
 /// 缓存广告
@@ -111,11 +111,11 @@ class HTAdverUtil: NSObject {
     var languageNativeCanShow = true
     
     // VPN 主页原生
-    var vpnHomeNativeItems = [HTAdvertiseItem]()
-    var vpnHomeNativeLoader: GADAdLoader?
-    var vpnHomeNativeCache = [[TimeInterval: HTAdvertiseCache]]()
-    var vpnHomeNativeIndex = 0
-    var vpnHomeNativeCanShow = true
+    var vHomeNativeItems = [HTAdvertiseItem]()
+    var vHomeNativeLoader: GADAdLoader?
+    var vHomeNativeCache = [[TimeInterval: HTAdvertiseCache]]()
+    var vHomeNativeIndex = 0
+    var vHomeNativeCanShow = true
     
     // root主页原生
     var rootHomeNativeItems = [HTAdvertiseItem]()
@@ -132,18 +132,18 @@ class HTAdverUtil: NSObject {
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
-            HTServerList = adInfo.vpnServers
+            HTServerList = adInfo.vServers
 #else
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob-release", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
-            HTServerList = adInfo.vpnServers
+            HTServerList = adInfo.vServers
 #endif
         } else {
             let jsonString = UserDefaults.standard.value(forKey: RemoteString.config) as! String
             let jsonData = Data(base64Encoded: jsonString) ?? Data()
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: jsonData)
-            HTServerList = adInfo.vpnServers
+            HTServerList = adInfo.vServers
         }
         
         HTRootUtil.admodel = adInfo
@@ -156,9 +156,9 @@ class HTAdverUtil: NSObject {
         photoInterItems = adInfo.photoInter.sorted(by: { $0.adSort < $1.adSort })
         languageNativeItems = adInfo.languageNative.sorted(by: { $0.adSort < $1.adSort })
         backRootItems = adInfo.backRoot.sorted(by: { $0.adSort < $1.adSort })
-        vpnHomeNativeItems = adInfo.vpnHome.sorted(by: { $0.adSort < $1.adSort })
+        vHomeNativeItems = adInfo.vHome.sorted(by: { $0.adSort < $1.adSort })
         rootHomeNativeItems = adInfo.rootHome.sorted(by: { $0.adSort < $1.adSort })
-        vpnConnectItems = adInfo.vpnConnect.sorted(by: { $0.adSort < $1.adSort })
+        vpnConnectItems = adInfo.vConnect.sorted(by: { $0.adSort < $1.adSort })
         
         // setup counts
         setupAdmobCounts()
@@ -178,7 +178,7 @@ class HTAdverUtil: NSObject {
         
         self.loadNativeAd(type: .transNative)
         self.loadNativeAd(type: .languageNative)
-        self.loadNativeAd(type: .vpnHome)
+        self.loadNativeAd(type: .vHome)
         self.loadNativeAd(type: .rootHome)
     }
 }
@@ -265,7 +265,7 @@ extension HTAdverUtil {
             photoInterIndex = index
             photoInterIsLoding = true
             items = photoInterItems
-        case .vpnConnect:
+        case .vConnect:
             if vpnConnectCache.count > 0 {
                 return
             }
@@ -313,7 +313,7 @@ extension HTAdverUtil {
                 self.photoInterIsLoding = false
             case .backRoot:
                 self.backRootIsLoding = false
-            case .vpnConnect:
+            case .vConnect:
                 self.vpnConnectIsLoding = false
             default:
                 return
@@ -338,10 +338,10 @@ extension HTAdverUtil {
                 if type == .loading, self.loadingSuccessComplete != nil {
                     self.loadingSuccessComplete!(ad)
                 }
-                if type == .vpnConnect, self.hasCallBack == false{
+                if type == .vConnect, self.hasCallBack == false{
                     self.hasCallBack = true
                     ad.fullScreenContentDelegate = self
-                    self.type = .vpnConnect
+                    self.type = .vConnect
                     complete?(true, ad)
                 }
             }
@@ -391,14 +391,14 @@ extension HTAdverUtil {
             return
         }
         // 是否有缓存
-        if self.getCacheByType(type: .vpnConnect)!.count > 0 {
-            self.type = .vpnConnect
-            if let ad = self.getCacheByType(type: .vpnConnect)!.first!.first?.value.advertise as? GADInterstitialAd {
+        if self.getCacheByType(type: .vConnect)!.count > 0 {
+            self.type = .vConnect
+            if let ad = self.getCacheByType(type: .vConnect)!.first!.first?.value.advertise as? GADInterstitialAd {
                 ad.fullScreenContentDelegate = self
                 complete(true, ad)
             } else {
-                removeCachefirst(type: .vpnConnect)
-                self.loadInterstitialAd(type: .vpnConnect, complete)
+                removeCachefirst(type: .vConnect)
+                self.loadInterstitialAd(type: .vConnect, complete)
                 self.type = nil
                 complete(false, nil)
             }
@@ -412,7 +412,7 @@ extension HTAdverUtil {
                 }
             }
             
-            self.loadInterstitialAd(type: .vpnConnect, complete)
+            self.loadInterstitialAd(type: .vConnect, complete)
             self.type = nil
             HTLog.log("没有缓存")
         }
@@ -463,24 +463,24 @@ extension HTAdverUtil {
             languageNativeLoader?.delegate = self
             languageNativeLoader?.load(GADRequest())
             
-        case .vpnHome:
-            if vpnHomeNativeCache.count > 0 {
+        case .vHome:
+            if vHomeNativeCache.count > 0 {
                 return
             }
             // 是否在加载中 及 检查数组是否越界
-            if vpnHomeNativeLoader?.isLoading == true {
+            if vHomeNativeLoader?.isLoading == true {
                 HTLog.log("[AD] 广告加载中 type: \(type.rawValue)")
                 return
             }
-            if index > vpnHomeNativeItems.count - 1 {
+            if index > vHomeNativeItems.count - 1 {
                 HTLog.log("[AD] 广告加载超过列表个数 type: \(type.rawValue)")
                 return
             }
             // 加载
-            vpnHomeNativeIndex = index
-            vpnHomeNativeLoader = GADAdLoader(adUnitID: vpnHomeNativeItems[index].adId, rootViewController: rootViewController, adTypes: [.native], options: nil)
-            vpnHomeNativeLoader?.delegate = self
-            vpnHomeNativeLoader?.load(GADRequest())
+            vHomeNativeIndex = index
+            vHomeNativeLoader = GADAdLoader(adUnitID: vHomeNativeItems[index].adId, rootViewController: rootViewController, adTypes: [.native], options: nil)
+            vHomeNativeLoader?.delegate = self
+            vHomeNativeLoader?.load(GADRequest())
             
         case .rootHome:
             if rootHomeNativeCache.count > 0 {
@@ -527,8 +527,8 @@ extension HTAdverUtil {
                 complete(false, nil)
                 return
             }
-        case .vpnHome:
-            if vpnHomeNativeCanShow == false {
+        case .vHome:
+            if vHomeNativeCanShow == false {
                 HTLog.log("[AD] 广告刷新间隔未到 type: \(type.rawValue)")
                 complete(false, nil)
                 return
@@ -605,10 +605,10 @@ extension HTAdverUtil: GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
             /// 加入缓存
             self.addCacheByType(type: .languageNative, model: cache)
         }
-        else if adLoader == vpnHomeNativeLoader {
-            HTLog.log("[AD]  广告加载成功 type: vpnHome 优先级: \(self.vpnHomeNativeIndex + 1), unitID: \(self.vpnHomeNativeItems[self.vpnHomeNativeIndex].adId ?? "")")
+        else if adLoader == vHomeNativeLoader {
+            HTLog.log("[AD]  广告加载成功 type: vHome 优先级: \(self.vHomeNativeIndex + 1), unitID: \(self.vHomeNativeItems[self.vHomeNativeIndex].adId ?? "")")
             
-            let item = self.vpnHomeNativeItems.filter({ $0.adId == adLoader.adUnitID }).first!
+            let item = self.vHomeNativeItems.filter({ $0.adId == adLoader.adUnitID }).first!
             let cache = HTAdvertiseCache()
             cache.adId = item.adId
             cache.adSort = item.adSort
@@ -616,8 +616,8 @@ extension HTAdverUtil: GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
             cache.advertise = nativeAd
             
             /// 加入缓存
-            self.addCacheByType(type: .vpnHome, model: cache)
-            NotificationCenter.default.post(name: Notification.Name.AD.vpnHomeNative, object: nil)
+            self.addCacheByType(type: .vHome, model: cache)
+            NotificationCenter.default.post(name: Notification.Name.AD.vHomeNative, object: nil)
         }
         else if adLoader == rootHomeNativeLoader {
             HTLog.log("[AD]  广告加载成功 type: rootHome 优先级: \(self.rootHomeNativeIndex + 1), unitID: \(self.rootHomeNativeItems[self.rootHomeNativeIndex].adId ?? "")")
@@ -644,9 +644,9 @@ extension HTAdverUtil: GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
             HTLog.log("[AD] 广告加载失败 type: languageNative \(error.localizedDescription) 优先级: \(self.languageNativeIndex + 1), unitID: \(self.languageNativeItems[self.languageNativeIndex].adId ?? "")")
             self.loadNativeAd(type: .languageNative, index: languageNativeIndex + 1)
         }
-        else if adLoader == vpnHomeNativeLoader {
-            HTLog.log("[AD] 广告加载失败 type: vpnHome \(error.localizedDescription) 优先级: \(self.vpnHomeNativeIndex + 1), unitID: \(self.vpnHomeNativeItems[self.vpnHomeNativeIndex].adId ?? "")")
-            self.loadNativeAd(type: .vpnHome, index: vpnHomeNativeIndex + 1)
+        else if adLoader == vHomeNativeLoader {
+            HTLog.log("[AD] 广告加载失败 type: vHome \(error.localizedDescription) 优先级: \(self.vHomeNativeIndex + 1), unitID: \(self.vHomeNativeItems[self.vHomeNativeIndex].adId ?? "")")
+            self.loadNativeAd(type: .vHome, index: vHomeNativeIndex + 1)
         }
         else if adLoader == rootHomeNativeLoader {
             HTLog.log("[AD] 广告加载失败 type: rootHome \(error.localizedDescription) 优先级: \(self.rootHomeNativeIndex + 1), unitID: \(self.rootHomeNativeItems[self.rootHomeNativeIndex].adId ?? "")")
@@ -679,7 +679,7 @@ extension HTAdverUtil: GADFullScreenContentDelegate {
             if type == .loading, let app = UIApplication.shared.delegate as? AppDelegate {
                 app.getTrackAuth()
             }
-            if self.type == .vpnConnect {
+            if self.type == .vConnect {
                 self.type = nil
             }
         }
@@ -706,8 +706,8 @@ extension HTAdverUtil {
             transNativeCanShow = true
         case .languageNative:
             languageNativeCanShow = true
-        case .vpnHome:
-            vpnHomeNativeCanShow = true
+        case .vHome:
+            vHomeNativeCanShow = true
         case .rootHome:
             rootHomeNativeCanShow = true
         default:
@@ -721,8 +721,8 @@ extension HTAdverUtil {
             transNativeCanShow = false
         case .languageNative:
             languageNativeCanShow = false
-        case .vpnHome:
-            vpnHomeNativeCanShow = false
+        case .vHome:
+            vHomeNativeCanShow = false
         case .rootHome:
             rootHomeNativeCanShow = false
         default:
@@ -757,7 +757,7 @@ extension HTAdverUtil {
         vpnConnectCache = vpnConnectCache.filter({
             now - TimeInterval($0.first!.key) < 3000
         })
-        vpnHomeNativeCache = vpnHomeNativeCache.filter({
+        vHomeNativeCache = vHomeNativeCache.filter({
             now - TimeInterval($0.first!.key) < 3000
         })
         rootHomeNativeCache = rootHomeNativeCache.filter({
@@ -779,10 +779,10 @@ extension HTAdverUtil {
             return languageNativeCache
         case .backRoot:
             return backRootCache
-        case .vpnConnect:
+        case .vConnect:
             return vpnConnectCache
-        case .vpnHome:
-            return vpnHomeNativeCache
+        case .vHome:
+            return vHomeNativeCache
         case .rootHome:
             return rootHomeNativeCache
         }
@@ -820,14 +820,14 @@ extension HTAdverUtil {
             backRootCache.sort(by: {
                 $0.first!.value.adSort > $1.first!.value.adSort
             })
-        case .vpnConnect:
+        case .vConnect:
             vpnConnectCache.append([Date().timeIntervalSince1970: model])
             vpnConnectCache.sort(by: {
                 $0.first!.value.adSort > $1.first!.value.adSort
             })
-        case .vpnHome:
-            vpnHomeNativeCache.append([Date().timeIntervalSince1970: model])
-            vpnHomeNativeCache.sort(by: {
+        case .vHome:
+            vHomeNativeCache.append([Date().timeIntervalSince1970: model])
+            vHomeNativeCache.sort(by: {
                 $0.first!.value.adSort > $1.first!.value.adSort
             })
         case .rootHome:
@@ -852,10 +852,10 @@ extension HTAdverUtil {
             languageNativeCache.removeAll()
         case .backRoot:
             backRootCache.removeAll()
-        case .vpnConnect:
+        case .vConnect:
             vpnConnectCache.removeAll()
-        case .vpnHome:
-            vpnHomeNativeCache.removeAll()
+        case .vHome:
+            vHomeNativeCache.removeAll()
         case .rootHome:
             rootHomeNativeCache.removeAll()
         }
@@ -869,7 +869,7 @@ extension HTAdverUtil {
         languageNativeCache.removeAll()
         backRootCache.removeAll()
         vpnConnectCache.removeAll()
-        vpnHomeNativeCache.removeAll()
+        vHomeNativeCache.removeAll()
         rootHomeNativeCache.removeAll()
         
         /// 加载状态及加载下标重置
@@ -890,7 +890,7 @@ extension HTAdverUtil {
         vpnConnectIsLoding = false
         vpnConnectIndex = 0
         
-        vpnHomeNativeIndex = 0
+        vHomeNativeIndex = 0
         rootHomeNativeIndex = 0
         
         languageNativeIndex = 0

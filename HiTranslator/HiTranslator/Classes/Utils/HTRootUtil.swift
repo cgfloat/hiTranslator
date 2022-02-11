@@ -49,7 +49,7 @@ class LaguageString {
 
 /// UserDefault RemoteConfig 相关 key
 class RemoteString {
-    static let config = "config"
+    static let config = "config131"
     static let overdue = "overdue"
 }
 //VPN key

@@ -1,5 +1,5 @@
 //
-//  HTVpnHomeViewController.swift
+//  HTvHomeViewController.swift
 //  HiTranslator
 //
 //  Created by sunhuaiwu on 2022/2/8.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 var hasEnterBackGround = false
-class HTVpnHomeViewController: UIViewController {
+class HTvHomeViewController: UIViewController {
     lazy var topV: HTTopView = {
         let v = HTTopView.loadFromXib()
         v.titleLab.text = "Hi Translator"
@@ -47,7 +47,7 @@ class HTVpnHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ColorFromRGB(0xF5F7FC)
-        NotificationCenter.default.addObserver(self, selector: #selector(showVpnHomeAD), name: Notification.Name.AD.vpnHomeNative, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showvHomeAD), name: Notification.Name.AD.vHomeNative, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setSelfWillGoBack), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         view.addSubview(topV)
@@ -58,18 +58,18 @@ class HTVpnHomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         HTAdverUtil.shared.loadInterstitialAd(type: .backRoot)
-        showVpnHomeAD()
+        showvHomeAD()
         HTLog.vpn_vpage()
     }
     
-    @objc func showVpnHomeAD(){
-        HTAdverUtil.shared.showNativeAd(type: .vpnHome, complete: { [weak self] result, ad in
+    @objc func showvHomeAD(){
+        HTAdverUtil.shared.showNativeAd(type: .vHome, complete: { [weak self] result, ad in
             if result == true { /// cache 有则加载
                 self?.nativeV.isHidden = false
                 self?.nativeV.nativeAd = ad
                 HTAdverUtil.shared.addShowCount()
-                HTAdverUtil.shared.removeCachefirst(type: .vpnHome)
-                HTAdverUtil.shared.loadNativeAd(type: .vpnHome)
+                HTAdverUtil.shared.removeCachefirst(type: .vHome)
+                HTAdverUtil.shared.loadNativeAd(type: .vHome)
             }
         })
     }

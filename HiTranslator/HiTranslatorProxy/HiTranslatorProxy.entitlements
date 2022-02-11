@@ -16,7 +16,7 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.cgfloattest.HiTranslator</string>
+		<string>group.com.translateapp.hi.free</string>
 	</array>
 </dict>
 </plist>

@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Settings.shared.isCodelessDebugLogEnabled = true
         
         HTTransUtil.shared.config()
-//        HTRemoteUtil.shared.defaultConfig()
+        HTRemoteUtil.shared.defaultConfig()
         
         HTLog.turn_c()
         

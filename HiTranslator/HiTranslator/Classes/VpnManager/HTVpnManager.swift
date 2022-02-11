@@ -138,7 +138,7 @@ class HTVpnManager: NSObject {
             }
             let tunnelProtocol = NETunnelProviderProtocol()
             tunnelProtocol.serverAddress = "HiTranslator"
-            tunnelProtocol.providerBundleIdentifier = "com.cgfloattest.HiTranslator.HiTranslatorProxy"
+            tunnelProtocol.providerBundleIdentifier = "com.translateapp.hi.free.HiTranslatorProxy"
             let rule = NEOnDemandRuleConnect()
             rule.interfaceTypeMatch = .any
             self.providerManager?.isEnabled = true
