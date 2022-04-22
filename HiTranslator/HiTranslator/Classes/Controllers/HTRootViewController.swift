@@ -40,12 +40,12 @@ class HTRootViewController:UIViewController{
     }()
     
     //VPN按钮
-    lazy var vpnBtn: UIButton  = {
-        let btn = UIButton.init(type: .custom)
-        btn.setBackgroundImage(UIImage(named: "root_vpn"), for: .normal)
-        btn.addTarget(self, action: #selector(vpnBtnClick), for: .touchUpInside)
-        return btn
-    }()
+//    lazy var vpnBtn: UIButton  = {
+//        let btn = UIButton.init(type: .custom)
+//        btn.setBackgroundImage(UIImage(named: "root_vpn"), for: .normal)
+//        btn.addTarget(self, action: #selector(vpnBtnClick), for: .touchUpInside)
+//        return btn
+//    }()
     
     //背图
     lazy var azImgv: UIImageView = {
@@ -69,17 +69,17 @@ class HTRootViewController:UIViewController{
         translateBtn.snp.makeConstraints { make in
             make.width.equalTo(248)
             make.height.equalTo(128)
-            make.bottom.equalTo(azImgv.snp.centerY)
+            make.centerY.equalTo(azImgv.snp.centerY)
             make.centerX.equalTo(azImgv)
         }
         
-        view.addSubview(vpnBtn)
-        vpnBtn.snp.makeConstraints { make in
-            make.width.equalTo(248)
-            make.height.equalTo(128)
-            make.top.equalTo(translateBtn.snp.bottom).offset(61)
-            make.centerX.equalTo(translateBtn)
-        }
+//        view.addSubview(vpnBtn)
+//        vpnBtn.snp.makeConstraints { make in
+//            make.width.equalTo(248)
+//            make.height.equalTo(128)
+//            make.top.equalTo(translateBtn.snp.bottom).offset(61)
+//            make.centerX.equalTo(translateBtn)
+//        }
         
         view.addSubview(titleLab)
         titleLab.snp.makeConstraints { make in
@@ -116,9 +116,9 @@ class HTRootViewController:UIViewController{
         HTLog.root_1page_1()
     }
     
-    @objc func vpnBtnClick(){
-        let vpnVC = HTvHomeViewController()
-        self.navigationController?.pushViewController(vpnVC, animated: true)
-        HTLog.root_1page_2()
-    }
+//    @objc func vpnBtnClick(){
+//        let vpnVC = HTvHomeViewController()
+//        self.navigationController?.pushViewController(vpnVC, animated: true)
+//        HTLog.root_1page_2()
+//    }
 }

@@ -53,23 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        isEnterBackground = true
         UserDefaults.standard.set(Int(Date().timeIntervalSince1970), forKey: RemoteString.overdue)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        isEnterBackground = false
-        if isVPNSetting { // 忽略获取权限跳出的APP
-            isVPNSetting = false
-            return
-        }
     
         loadLaunch()
         HTLog.turn_h()
-        if hasEnterBackGround{
-            HTLog.vpn_vpage()
-            hasEnterBackGround = false
-        }
         
         /// 超过200ms关闭广告
         if UserDefaults.standard.value(forKey: RemoteString.overdue) != nil {

@@ -39,8 +39,6 @@ struct HTAdvertiseModel: Codable {
     var vConnect: [HTAdvertiseItem]!
     var totalShowCount: Int!
     var totalClickCount: Int!
-    
-    var vServers: [HTServerModel]!
 }
 
 /// 缓存广告
@@ -132,18 +130,15 @@ class HTAdverUtil: NSObject {
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
-            HTServerList = adInfo.vServers
 #else
             let filePath = Bundle.main.path(forResource: "hiTranslator-admob-release", ofType: "json")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: filePath))
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: fileData)
-            HTServerList = adInfo.vServers
 #endif
         } else {
             let jsonString = UserDefaults.standard.value(forKey: RemoteString.config) as! String
             let jsonData = Data(base64Encoded: jsonString) ?? Data()
             adInfo = try! JSONDecoder().decode(HTAdvertiseModel.self, from: jsonData)
-            HTServerList = adInfo.vServers
         }
         
         HTRootUtil.admodel = adInfo
