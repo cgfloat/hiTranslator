@@ -94,11 +94,11 @@ extension HTSetViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            UIApplication.shared.open(URL(string: "https://apps.apple.com/us/app/id1602346854")!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string: "https://apps.apple.com/us/app/id1603792739")!, options: [:], completionHandler: nil)
         case 1:
             let params = [
                 UIImage(named: "logo")!,
-                URL(string: "https://apps.apple.com/us/app/id1602346854")!
+                URL(string: "https://apps.apple.com/us/app/id1603792739")!
             ] as [Any]
             let activity = UIActivityViewController(activityItems: params, applicationActivities: nil)
             present(activity, animated: true, completion: nil)

@@ -45,8 +45,16 @@ class LaguageString {
     static let ocrTargetIndex = "ocrTargetIndex"
 }
 
+/// UserDefault RemoteConfig 相关 key
+class RemoteString {
+    static let config = "config"
+    static let overdue = "overdue"
+}
+
 // MARK: - 图片识别区域获取
 class HTRootUtil: NSObject {
+    
+    static var admodel: HTAdvertiseModel?
     
     public static func addCircle(
         atPoint point: CGPoint,

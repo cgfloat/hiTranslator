@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AA823E227953C5100261C68 /* HTAdverUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA823E127953C5100261C68 /* HTAdverUtil.swift */; };
+		4AA823E427953C6200261C68 /* HTRemoteUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA823E327953C6200261C68 /* HTRemoteUtil.swift */; };
+		4AA823E62795508A00261C68 /* hiTranslator-admob.json in Resources */ = {isa = PBXBuildFile; fileRef = 4AA823E52795508A00261C68 /* hiTranslator-admob.json */; };
+		4AAB487F279952F60038294F /* HTNativeADView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB487E279952F60038294F /* HTNativeADView.swift */; };
+		4AAB4881279953040038294F /* HTNativeADView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB4880279953040038294F /* HTNativeADView.xib */; };
+		4AAB608E27B0ADE30083C3D3 /* hiTranslator-admob-release.json in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB608D27B0ADE30083C3D3 /* hiTranslator-admob-release.json */; };
 		4AAF421A278539A9004D4C8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF4219278539A9004D4C8D /* AppDelegate.swift */; };
 		4AAF421E278539A9004D4C8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF421D278539A9004D4C8D /* ViewController.swift */; };
 		4AAF4221278539A9004D4C8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF421F278539A9004D4C8D /* Main.storyboard */; };
@@ -38,6 +44,8 @@
 		4AAF426527858CFC004D4C8D /* HTSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF426327858CFC004D4C8D /* HTSetTableViewCell.swift */; };
 		4AAF426627858CFC004D4C8D /* HTSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAF426427858CFC004D4C8D /* HTSetTableViewCell.xib */; };
 		4AB0B0A32788095900539A97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4AB0B0A22788095900539A97 /* GoogleService-Info.plist */; };
+		4AD21B51279A5F6100AFD74A /* HTNativePlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD21B50279A5F6100AFD74A /* HTNativePlaceHolderView.swift */; };
+		4AD21B53279A5F6E00AFD74A /* HTNativePlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD21B52279A5F6E00AFD74A /* HTNativePlaceHolderView.xib */; };
 		4AE207482786C0AF00DA6A25 /* HTTransUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE207472786C0AF00DA6A25 /* HTTransUtil.swift */; };
 		4AE2074A2786C42C00DA6A25 /* HTWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE207492786C42C00DA6A25 /* HTWebview.swift */; };
 		4AE2074C27870BB100DA6A25 /* HTOcrTransModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2074B27870BB100DA6A25 /* HTOcrTransModel.swift */; };
@@ -45,6 +53,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4AA823E127953C5100261C68 /* HTAdverUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTAdverUtil.swift; sourceTree = "<group>"; };
+		4AA823E327953C6200261C68 /* HTRemoteUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTRemoteUtil.swift; sourceTree = "<group>"; };
+		4AA823E52795508A00261C68 /* hiTranslator-admob.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "hiTranslator-admob.json"; sourceTree = "<group>"; };
+		4AAB487E279952F60038294F /* HTNativeADView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTNativeADView.swift; sourceTree = "<group>"; };
+		4AAB4880279953040038294F /* HTNativeADView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTNativeADView.xib; sourceTree = "<group>"; };
+		4AAB608D27B0ADE30083C3D3 /* hiTranslator-admob-release.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "hiTranslator-admob-release.json"; sourceTree = "<group>"; };
 		4AAF4216278539A9004D4C8D /* HiTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAF4219278539A9004D4C8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AAF421D278539A9004D4C8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +92,8 @@
 		4AAF426327858CFC004D4C8D /* HTSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTSetTableViewCell.swift; sourceTree = "<group>"; };
 		4AAF426427858CFC004D4C8D /* HTSetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTSetTableViewCell.xib; sourceTree = "<group>"; };
 		4AB0B0A22788095900539A97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4AD21B50279A5F6100AFD74A /* HTNativePlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTNativePlaceHolderView.swift; sourceTree = "<group>"; };
+		4AD21B52279A5F6E00AFD74A /* HTNativePlaceHolderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HTNativePlaceHolderView.xib; sourceTree = "<group>"; };
 		4AE207472786C0AF00DA6A25 /* HTTransUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTransUtil.swift; sourceTree = "<group>"; };
 		4AE207492786C42C00DA6A25 /* HTWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTWebview.swift; sourceTree = "<group>"; };
 		4AE2074B27870BB100DA6A25 /* HTOcrTransModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTOcrTransModel.swift; sourceTree = "<group>"; };
@@ -157,6 +173,8 @@
 				4AAF424127858027004D4C8D /* Extension-HT.swift */,
 				4AAF4245278580AC004D4C8D /* HTLog.swift */,
 				4AE207472786C0AF00DA6A25 /* HTTransUtil.swift */,
+				4AA823E127953C5100261C68 /* HTAdverUtil.swift */,
+				4AA823E327953C6200261C68 /* HTRemoteUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -164,6 +182,8 @@
 		4AAF4230278543D8004D4C8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4AAB608D27B0ADE30083C3D3 /* hiTranslator-admob-release.json */,
+				4AA823E52795508A00261C68 /* hiTranslator-admob.json */,
 				4AE2074B27870BB100DA6A25 /* HTOcrTransModel.swift */,
 			);
 			path = Models;
@@ -202,6 +222,10 @@
 				4AAF426327858CFC004D4C8D /* HTSetTableViewCell.swift */,
 				4AAF426427858CFC004D4C8D /* HTSetTableViewCell.xib */,
 				4AE207492786C42C00DA6A25 /* HTWebview.swift */,
+				4AAB487E279952F60038294F /* HTNativeADView.swift */,
+				4AAB4880279953040038294F /* HTNativeADView.xib */,
+				4AD21B50279A5F6100AFD74A /* HTNativePlaceHolderView.swift */,
+				4AD21B52279A5F6E00AFD74A /* HTNativePlaceHolderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,15 +310,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AAB608E27B0ADE30083C3D3 /* hiTranslator-admob-release.json in Resources */,
 				4AAF424A27858AB6004D4C8D /* HTTopView.xib in Resources */,
 				4AAF4226278539AD004D4C8D /* LaunchScreen.storyboard in Resources */,
 				4AAF425227858B63004D4C8D /* HTTranslatingView.xib in Resources */,
 				4AAF426627858CFC004D4C8D /* HTSetTableViewCell.xib in Resources */,
+				4AAB4881279953040038294F /* HTNativeADView.xib in Resources */,
 				4AAF425E27858CA6004D4C8D /* HTResultView.xib in Resources */,
 				4AB0B0A32788095900539A97 /* GoogleService-Info.plist in Resources */,
 				4AAF424E27858B14004D4C8D /* HTPhotoTopView.xib in Resources */,
 				4AAF4223278539AD004D4C8D /* Assets.xcassets in Resources */,
+				4AA823E62795508A00261C68 /* hiTranslator-admob.json in Resources */,
 				4AAF425627858B95004D4C8D /* HTLanuchView.xib in Resources */,
+				4AD21B53279A5F6E00AFD74A /* HTNativePlaceHolderView.xib in Resources */,
 				4AAF426227858CE6004D4C8D /* HTLanguageTableViewCell.xib in Resources */,
 				4AAF4221278539A9004D4C8D /* Main.storyboard in Resources */,
 				4AAF425A27858C69004D4C8D /* HTInputView.xib in Resources */,
@@ -394,16 +422,20 @@
 				4AAF425827858C5E004D4C8D /* HTInputView.swift in Sources */,
 				4AAF425427858B7F004D4C8D /* HTLanuchView.swift in Sources */,
 				4AAF424C27858B09004D4C8D /* HTPhotoTopView.swift in Sources */,
+				4AAB487F279952F60038294F /* HTNativeADView.swift in Sources */,
 				4AAF4240278577C4004D4C8D /* HTRootUtil.swift in Sources */,
 				4AAF421E278539A9004D4C8D /* ViewController.swift in Sources */,
 				4AAF425027858B59004D4C8D /* HTTranslatingView.swift in Sources */,
 				4AAF4238278546E8004D4C8D /* HTRecognitionViewController.swift in Sources */,
+				4AD21B51279A5F6100AFD74A /* HTNativePlaceHolderView.swift in Sources */,
+				4AA823E227953C5100261C68 /* HTAdverUtil.swift in Sources */,
 				4AAF426527858CFC004D4C8D /* HTSetTableViewCell.swift in Sources */,
 				4AAF4236278546AA004D4C8D /* HTTransViewController.swift in Sources */,
 				4AAF423C2785470A004D4C8D /* HTSetViewController.swift in Sources */,
 				4AAF425C27858C9C004D4C8D /* HTResultView.swift in Sources */,
 				4AE207482786C0AF00DA6A25 /* HTTransUtil.swift in Sources */,
 				4AAF424827858AAC004D4C8D /* HTTopView.swift in Sources */,
+				4AA823E427953C6200261C68 /* HTRemoteUtil.swift in Sources */,
 				4AAF421A278539A9004D4C8D /* AppDelegate.swift in Sources */,
 				4AAF4234278546A0004D4C8D /* HTRootViewController.swift in Sources */,
 				4AAF424227858027004D4C8D /* Extension-HT.swift in Sources */,
@@ -564,6 +596,7 @@
 				INFOPLIST_FILE = HiTranslator/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Hi Translator";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Hi Translator need to use the camera to scan the text and translate it";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -575,7 +608,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cgfloat.HiTranslator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -598,6 +631,7 @@
 				INFOPLIST_FILE = HiTranslator/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Hi Translator";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Hi Translator need to use the camera to scan the text and translate it";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -609,7 +643,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cgfloat.HiTranslator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
